@@ -1,3 +1,4 @@
+package main;
 import java.time.LocalDate;
 
 public class Transaction {
@@ -21,6 +22,26 @@ public class Transaction {
         this.amount = amount;
     }
 
+    public TransactionType getType() {
+        return this.type;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public String getNarrative() {
+        return this.narrative;
+    }
+
+    public String getBankReference() {
+        return this.bankReference;
+    }
+
+    public double getAmount() {
+        return this.amount;
+    }
+    
     @Override
     public String toString() {
         return "Transaction{" +
