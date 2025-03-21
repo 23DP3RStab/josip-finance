@@ -17,13 +17,14 @@ public class TransactionManager {
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
 
-            LocalDate date = LocalDate.parse(parts[0]);
-            Transaction.TransactionType type = Transaction.TransactionType.valueOf(parts[1].toUpperCase());
-            String narrative = parts[2];
-            String bankReference = parts[3];
-            double amount = Double.valueOf(parts[4]);
+            int id = Integer.valueOf(parts[0]);
+            LocalDate date = LocalDate.parse(parts[1]);
+            Transaction.TransactionType type = Transaction.TransactionType.valueOf(parts[2].toUpperCase());
+            String narrative = parts[3];
+            String bankReference = parts[4];
+            double amount = Double.valueOf(parts[5]);
 
-            Transaction transaction = new Transaction(date, type, narrative, bankReference, amount);
+            Transaction transaction = new Transaction(id, date, type, narrative, bankReference, amount);
             transactionList.add(transaction);
         }
         return transactionList;
