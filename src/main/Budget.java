@@ -1,5 +1,6 @@
 package main;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Budget {
     public enum BudgetPeriod {
@@ -10,10 +11,11 @@ public class Budget {
     }
 
     private int id;
-    private BudgetPeriod period;
-    private double limitAmount;
-    private String name;
     private LocalDate startDate;
+    private BudgetPeriod period;
+    private String name;
+    private double limitAmount;
+    // private ArrayList<Category> categorySpending = new ArrayList<>();
 
     public Budget(int id,BudgetPeriod period, double limitAmount, String name, LocalDate startDate) {
         this.id = id;

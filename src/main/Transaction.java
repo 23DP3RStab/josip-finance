@@ -9,8 +9,8 @@ public class Transaction {
     }
 
     private int id;
-    private TransactionType type;
     private LocalDate date;
+    private TransactionType type;
     private String narrative;
     private String bankReference;
     private double amount;
