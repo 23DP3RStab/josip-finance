@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class TransactionManager {
 
@@ -17,7 +18,7 @@ public class TransactionManager {
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
 
-            int id = Integer.valueOf(parts[0]);
+            UUID id = UUID.fromString(parts[0]);
             LocalDate date = LocalDate.parse(parts[1]);
             Transaction.TransactionType type = Transaction.TransactionType.valueOf(parts[2].toUpperCase());
             String narrative = parts[3];

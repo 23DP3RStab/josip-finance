@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class BudgetManager {
 
@@ -18,7 +19,7 @@ public class BudgetManager {
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
 
-            int id = Integer.valueOf(parts[0]);
+            UUID id = UUID.fromString(parts[0]);
             LocalDate startDate = LocalDate.parse(parts[1]);
             Budget.BudgetPeriod period = Budget.BudgetPeriod.valueOf(parts[2].toUpperCase());
             String name = parts[3];

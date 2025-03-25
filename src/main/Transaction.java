@@ -1,5 +1,6 @@
 package main;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Transaction {
     public enum TransactionType {
@@ -8,14 +9,14 @@ public class Transaction {
         PURCHASE
     }
 
-    private int id;
+    private UUID id;
     private LocalDate date;
     private TransactionType type;
     private String narrative;
     private String bankReference;
     private double amount;
 
-    public Transaction(int id,LocalDate date, TransactionType type, String narrative, String bankReference, double amount) {
+    public Transaction(UUID id, LocalDate date, TransactionType type, String narrative, String bankReference, double amount) {
         this.id = id;
         this.date = date;
         this.type = type;
@@ -24,7 +25,16 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public int getID() {
+    public Transaction(LocalDate date, TransactionType type, String narrative, String bankReference, double amount) {
+        this.id = UUID.randomUUID();
+        this.date = date;
+        this.type = type;
+        this.narrative = narrative;
+        this.bankReference = bankReference;
+        this.amount = amount;
+    }
+
+    public UUID getID() {
         return this.id;
     }
 
@@ -51,7 +61,8 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "date=" + date +
+                "id=" + id +
+                ", date=" + date +
                 ", type=" + type +
                 ", narrative='" + narrative + '\'' +
                 ", bankReference='" + bankReference + '\'' +

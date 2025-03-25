@@ -1,6 +1,7 @@
 package main;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Budget {
     public enum BudgetPeriod {
@@ -10,14 +11,14 @@ public class Budget {
         YEARLY
     }
 
-    private int id;
+    private UUID id;
     private LocalDate startDate;
     private BudgetPeriod period;
     private String name;
     private double limitAmount;
     // private ArrayList<Category> categorySpending = new ArrayList<>();
 
-    public Budget(int id,BudgetPeriod period, double limitAmount, String name, LocalDate startDate) {
+    public Budget(UUID id,BudgetPeriod period, double limitAmount, String name, LocalDate startDate) {
         this.id = id;
         this.limitAmount = limitAmount;
         this.period = period;
@@ -25,7 +26,15 @@ public class Budget {
         this.startDate = startDate;
     }
 
-    public int getID() {
+    public Budget(BudgetPeriod period, double limitAmount, String name, LocalDate startDate) {
+        this.id = UUID.randomUUID();
+        this.limitAmount = limitAmount;
+        this.period = period;
+        this.name = name;
+        this.startDate = startDate;
+    }
+
+    public UUID getID() {
         return this.id;
     }
     
