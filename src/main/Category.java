@@ -11,10 +11,9 @@ public class Category {
     
     private String name;
     private CategoryType type;
-    private BigDecimal spendingLimit;
-    private ArrayList<Transaction> transactions;
+    private double spendingLimit;
 
-    public Category(String name, CategoryType type, BigDecimal spendingLimit) {
+    public Category(String name, CategoryType type, double spendingLimit) {
         this.name = name;
         this.type = type;
         this.spendingLimit = spendingLimit;
@@ -33,7 +32,7 @@ public class Category {
         return this.type;
     }
 
-    public BigDecimal getSpendingLimit() {
+    public double getSpendingLimit() {
         return this.spendingLimit;
     }
 

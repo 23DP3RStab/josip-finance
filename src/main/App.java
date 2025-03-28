@@ -21,10 +21,8 @@ public class App {
 
         Budget budget = new Budget(BudgetPeriod.MONTHLY, 1000, "Sibder", LocalDate.parse("2025-01-20"));
         System.out.println(budget);
-
-        BigDecimal limit = new BigDecimal("250.0");
         
-        Category transport = new Category("Transport", CategoryType.EXPENSE, limit);
+        Category transport = new Category("Transport", CategoryType.EXPENSE, 250);
         System.out.println(transport);
 
         

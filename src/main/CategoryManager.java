@@ -2,36 +2,37 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.math.BigDecimal;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import main.Category.CategoryType;
+
 public class CategoryManager {
 
     public static ArrayList<Category> getCategoryList() throws Exception {
-        BufferedReader reader = Helper.getReader("budgets.csv");
+        BufferedReader reader = Helper.getReader("categories.csv");
 
-        ArrayList<Budget> budgetList = new ArrayList<>();
+        ArrayList<Category> categoryList = new ArrayList<>();
         String line;
 
         reader.readLine();
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
 
-            UUID id = UUID.fromString(parts[0]);
-            LocalDate startDate = LocalDate.parse(parts[1]);
-            Budget.BudgetPeriod period = Budget.BudgetPeriod.valueOf(parts[2].toUpperCase());
-            String name = parts[3];
-            double limitAmount = Double.valueOf(parts[4]);
+            String name = parts[0];
+            CategoryType type = CategoryType.valueOf(parts[1]);
+            double spendingLimit = Double.valueOf(parts[4]);
 
-            Budget budget = new Budget(id, period, limitAmount, name, startDate);
-            budgetList.add(budget);
+            Category category = new Category(name, type, spendingLimit);
+            categoryList.add(category);
         }
-        return budgetList;
+        return categoryList;
     }
 
-    public static void addBudget(Budget budget) throws Exception {
-        BufferedWriter writer = Helper.getWriter("budgets.csv", StandardOpenOption.APPEND);
+    public static void addCategory(Category category) throws Exception {
+        BufferedWriter writer = Helper.getWriter("categories.csv", StandardOpenOption.APPEND);
     }
 }
