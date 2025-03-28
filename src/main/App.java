@@ -26,5 +26,7 @@ public class App {
         
         Category transport = new Category("Transport", CategoryType.EXPENSE, limit);
         System.out.println(transport);
+
+        
     }
 }
