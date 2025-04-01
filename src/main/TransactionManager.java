@@ -18,6 +18,16 @@ public class TransactionManager {
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
 
+            UUID id;
+            if (parts[0].isEmpty()) {
+                id = UUID.randomUUID();
+            } else {
+                try {
+                    id = UUID.fromString(parts[0]);
+                } catch (Exception)
+
+            }
+
             UUID id = parts[0].isEmpty() ? UUID.randomUUID() : UUID.fromString(parts[0]);
             LocalDate date = parts[1].isEmpty() ? LocalDate.now() : LocalDate.parse(parts[1]);
             double amount = parts[5].isEmpty() ? 0.0 : Double.parseDouble(parts[5]);
