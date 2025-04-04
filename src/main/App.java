@@ -14,21 +14,21 @@ public class App {
         String clearScreen = "\u001B[2J";
         System.out.println("                      JOSIP FINANCE");
         System.out.println("------------------------------------------------------");
-        // Transaction transaction = new Transaction(LocalDate.parse("2025-05-02"), TransactionType.INCOMING, "sonders sent monke", "IDK525IDK", 123.25);
-        ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
-        Budget budget = new Budget(BudgetPeriod.MONTHLY, 1000, "Sibder", LocalDate.parse("2025-01-20"));
-        Category transport = new Category("Transport", CategoryType.EXPENSE, 250);
+        // ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
+        // ArrayList<Budget> budget = BudgetManager.getBudgetList();
+        // ArrayList<Category> transport = CategoryManager.getCategoryList();
         while (true) {
-            System.out.println("Choose your option:  \n '1' - VIEW YOUR TRANSACTIONS \n '2' - VIEW YOUR BUDGET \n '3' - VIEW YOUR CATEGORY \n 'X' - EXIT");
+            System.out.println("Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'X' - EXIT");
             String input = scanner.nextLine().toUpperCase();
             switch(input) {
-                case "1": 
-                    System.out.print(clearScreen);
-                    for (Transaction transaction : transactions) {
-                        System.out.println(transaction);
-                    }
+                case "T": 
+                System.out.print(clearScreen);
+                System.out.println("                  ID                       Date          Type                            Narrative                  Bank Reference     Amount ");
+                System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+                // for (Transaction transaction : transactions) {
+                //     System.out.println(transaction);
+                // }
 
-                    // System.out.println(transaction);
                     System.out.println();
 
                     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
@@ -47,9 +47,13 @@ public class App {
                     } 
                     break; 
 
-                case "2": 
-                    System.out.print(clearScreen);                 
-                    System.out.println(budget);
+                case "B": 
+                    System.out.print(clearScreen);
+                    System.out.println("                  ID                       Period          Limit Amount                            Name                  Start Date           ");
+                    System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");                 
+                    // for (Budget budgets : budget) {
+                    //     System.out.println(budgets);
+                    // }
                     System.out.println();
 
                     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
@@ -67,9 +71,13 @@ public class App {
                             break;
                     } 
                     break;
-                case "3": 
+                case "C": 
                     System.out.println();
-                    System.out.println(transport);
+                    System.out.println("                  ID                       Period          Limit Amount                            Name                  Start Date           ");
+                    System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+                    // for (Category category : transport) {
+                    //     System.out.println(category);
+                    // }
                     System.out.println();
                     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
                     String input4 = scanner.nextLine().toUpperCase();
