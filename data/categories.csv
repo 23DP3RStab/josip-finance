@@ -1,6 +1,18 @@
 Name,Category
-Transport,EXPENSE
 Groceries,EXPENSE
+Utilities,EXPENSE
+Housing,EXPENSE
+Transport,EXPENSE
+Entertainment,EXPENSE
+Clothing,EXPENSE
+Shopping,EXPENSE
+Withdrawal,EXPENSE
+Healthcare,EXPENSE
+Fitness,EXPENSE
+Miscellaneous,EXPENSE
 Salary,INCOME
-Electricity Bill,EXPENSE
 Freelance Work,INCOME
+Investments,INCOME
+Gifts,INCOME
+Bonuses,INCOME
+Miscellaneous Income,INCOME

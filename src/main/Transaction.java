@@ -15,23 +15,20 @@ public class Transaction {
     private String narrative;
     private String bankReference;
     private double amount;
+    private String category;
 
-    public Transaction(UUID id, LocalDate date, TransactionType type, String narrative, String bankReference, double amount) {
+    public Transaction(UUID id, LocalDate date, TransactionType type, String narrative, String bankReference, double amount, String category) {
         this.id = id;
         this.date = date;
         this.type = type;
         this.narrative = narrative;
         this.bankReference = bankReference;
         this.amount = amount;
+        this.category = category;
     }
 
-    public Transaction(LocalDate date, TransactionType type, String narrative, String bankReference, double amount) {
-        this.id = UUID.randomUUID();
-        this.date = date;
-        this.type = type;
-        this.narrative = narrative;
-        this.bankReference = bankReference;
-        this.amount = amount;
+    public Transaction(LocalDate date, TransactionType type, String narrative, String bankReference, double amount, String category) {
+        this.super(UUID.randomUUID(), date, type, narrative, bankReference, amount, category);
     }
 
     public UUID getID() {

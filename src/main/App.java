@@ -14,20 +14,23 @@ public class App {
         String clearScreen = "\u001B[2J";
         System.out.println("                      JOSIP FINANCE");
         System.out.println("------------------------------------------------------");
-        // ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
+        ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
         // ArrayList<Budget> budget = BudgetManager.getBudgetList();
         // ArrayList<Category> transport = CategoryManager.getCategoryList();
         while (true) {
             System.out.println("Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'X' - EXIT");
             String input = scanner.nextLine().toUpperCase();
             switch(input) {
-                case "T": 
-                System.out.print(clearScreen);
-                System.out.println("                  ID                       Date          Type                            Narrative                  Bank Reference     Amount ");
-                System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
-                // for (Transaction transaction : transactions) {
-                //     System.out.println(transaction);
-                // }
+                case "T":
+                    System.out.print(clearScreen);
+                    System.out.println("Transactions:");
+                    System.out.printf("%-12s %-12s %-50s %-8s %10s\n", "Date", "Type", "Narrative", "Bank Reference", "Amount");
+                    System.out.println("-".repeat(120));
+                    for (Transaction transaction : transactions) {
+                        System.out.printf("%-12s %-12s %-55s %-10s %10.2f\n",
+                            transaction.getDate(), transaction.getType(),
+                            transaction.getNarrative(), transaction.getBankReference(), transaction.getAmount());
+                    }
 
                     System.out.println();
 
