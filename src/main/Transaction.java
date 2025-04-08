@@ -54,6 +54,10 @@ public class Transaction {
     public double getAmount() {
         return this.amount;
     }
+
+    public String getCategory() {
+        return this.category;
+    }
     
     @Override
     public String toString() {
