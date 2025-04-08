@@ -28,7 +28,7 @@ public class Transaction {
     }
 
     public Transaction(LocalDate date, TransactionType type, String narrative, String bankReference, double amount, String category) {
-        this.super(UUID.randomUUID(), date, type, narrative, bankReference, amount, category);
+        this(UUID.randomUUID(), date, type, narrative, bankReference, amount, category);
     }
 
     public UUID getID() {

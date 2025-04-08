@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import main.Transaction.TransactionType;
+
 public class TransactionManager {
 
     public static ArrayList<Transaction> getTransactionList() throws Exception {
@@ -45,8 +47,14 @@ public class TransactionManager {
 
             String narrative = parts[3].isEmpty() ? "No narrative provided" : parts[3];
             String bankReference = parts[4].isEmpty() ? "No reference" : parts[4];
+            String category;
+            if (type == Transaction.TransactionType.OUTGOING || type == Transaction.TransactionType.PURCHASE) {
+                category = parts[6].isEmpty() ? "Miscellanious" : parts[6];
+            } else {
+                category = parts[6].isEmpty() ? "Miscellanious Income" : parts[6];
+            }
 
-            Transaction transaction = new Transaction(id, date, type, narrative, bankReference, amount);
+            Transaction transaction = new Transaction(id, date, type, narrative, bankReference, amount, category);
             transactionList.add(transaction);
 
             if (parts[0].isEmpty() || parts[2].isEmpty()) {
