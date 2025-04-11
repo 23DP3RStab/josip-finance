@@ -56,15 +56,14 @@ public class App {
                     break; 
 
                 case "B":
-                //IR KĻUDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     System.out.print(clearScreen);
                     System.out.println("Budget:");
-                    System.out.printf("%12s %12s %50s %8s %7s %15s\n", "Period", "Limit Amount", "Name", "Start Date");
+                    System.out.printf("%12s %8s %7s %15s\n", "Period", "Name", "Limit Amount", "Start Date");
                     System.out.println("-".repeat(120));
                     for (Budget budgets : budget) {
-                        System.out.printf("%12s %12s %50s %8s %7s %15s\n",
-                            budgets.getPeriod(),
-                            budgets.getLimitAmount(), budgets.getName(), budgets.getStartDate());
+                        System.out.printf("%12s %8s %7s %15s\n",
+                            budgets.getPeriod(), budgets.getName(),
+                            budgets.getLimitAmount(), budgets.getStartDate());
                     }
 
                     System.out.println();

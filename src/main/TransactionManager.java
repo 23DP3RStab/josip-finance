@@ -31,10 +31,8 @@ public class TransactionManager {
                     System.out.println("[INFO] Generating new UUID.");
                     id = UUID.randomUUID();
                 }
-
             }
 
-            // UUID id = parts[0].isEmpty() ? UUID.randomUUID() : UUID.fromString(parts[0]);
             LocalDate date = parts[1].isEmpty() ? LocalDate.now() : LocalDate.parse(parts[1]);
             double amount = parts[5].isEmpty() ? 0.0 : Double.parseDouble(parts[5]);
 

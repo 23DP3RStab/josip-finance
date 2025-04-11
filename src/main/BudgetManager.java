@@ -20,10 +20,10 @@ public class BudgetManager {
             String[] parts = line.split(",");
 
             UUID id = UUID.fromString(parts[0]);
-            LocalDate startDate = LocalDate.parse(parts[1]);
-            Budget.BudgetPeriod period = Budget.BudgetPeriod.valueOf(parts[2].toUpperCase());
+            Budget.BudgetPeriod period = Budget.BudgetPeriod.valueOf(parts[1].toUpperCase());
+            double limitAmount = Double.valueOf(parts[2]);
             String name = parts[3];
-            double limitAmount = Double.valueOf(parts[4]);
+            LocalDate startDate = LocalDate.parse(parts[4]);
 
             Budget budget = new Budget(id, period, limitAmount, name, startDate);
             budgetList.add(budget);
