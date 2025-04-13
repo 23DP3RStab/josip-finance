@@ -14,10 +14,19 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String clearScreen = "\u001B[2J";
-        System.out.println("                      JOSIP FINANCE");
-        System.out.println("------------------------------------------------------");
+        System.out.println();
+        System.out.println("      ██╗ ██████╗  ██████╗██╗██████╗     ███████╗██╗███╗   ██╗ █████╗ ███╗   ██╗ ██████╗███████╗\r\n" + //
+                        "      ██║██╔═══██╗██╔════╝██║██╔══██╗    ██╔════╝██║████╗  ██║██╔══██╗████╗  ██║██╔════╝██╔════╝\r\n" + //
+                        "      ██║██║   ██║█████╗  ██║██████╔╝    █████╗  ██║██╔██╗ ██║███████║██╔██╗ ██║██║     █████╗  \r\n" + //
+                        " ██   ██║██║   ██║    ██║ ██║██╔═══╝     ██╔══╝  ██║██║╚██╗██║██╔══██║██║╚██╗██║██║     ██╔══╝  \r\n" + //
+                        " ╚█████╔╝╚██████╔╝██████║ ██║██║         ██║     ██║██║ ╚████║██║  ██║██║ ╚████║╚██████╗███████╗\r\n" + //
+                        "  ╚════╝  ╚═════╝ ╚═════╝ ╚═╝╚═╝         ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝\r\n" + //
+                        "\r\n" + //
+                        "                                   J O S I P   F I N A N C E\r\n" + //
+                        "");
+        System.out.println("-".repeat(100));
         ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
-        ArrayList<Budget> budget = BudgetManager.getBudgetList(); //IR KĻUDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ArrayList<Budget> budget = BudgetManager.getBudgetList();
         // ArrayList<Category> transport = CategoryManager.getCategoryList(); //PAGAIDAM NEVAJAG
         while (true) {
             System.out.println("Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'X' - EXIT");
@@ -35,10 +44,168 @@ public class App {
                     }
 
                     System.out.println();
-
-                    System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
+                    System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER");
+                    System.out.println("--------------------------");
+                    System.out.println(" 'Y' - RETURN TO MAIN \n 'X' - EXIT");
                     String input2 = scanner.nextLine().toUpperCase();
                     switch(input2) {
+                        case "S":
+                            System.out.print(clearScreen);
+                            System.err.println("Sort by: \n 'D' - DATE \n 'T' - TYPE \n 'N' - NARRATIVE \n 'B' - BANK REFERENCE \n 'A' - AMOUNT \n 'C' - CATEGORY");
+                            String input3 = scanner.nextLine().toUpperCase();
+                            switch(input3) {
+                                case "D":
+                                System.out.print(clearScreen);
+                                System.out.println("Sort by oldest to newest (ON) or newest to oldest (NO)?");
+                                String input4 = scanner.nextLine().toUpperCase();
+                                switch(input4) {
+                                    case "ON":
+                                                System.out.print(clearScreen);
+                                                System.out.println("Sorting by date from oldest to newest...");
+                                                
+                                                break;
+                                            case "NO":
+                                                System.out.print(clearScreen);
+                                                System.out.println("Sorting by date from newest to oldest...");
+                                                
+                                                break;
+                                            default:
+                                                System.out.print(clearScreen);
+                                                System.out.println("Invalid input. Please try again.");
+                                        }
+                                    break;
+
+                                case "T":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Sort by A-Z (AZ) or Z-A (ZA)?");
+                                    String input5 = scanner.nextLine().toUpperCase();
+                                    switch(input5) {
+                                        case "AZ":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by type from A-Z...");
+                                            
+                                            break;
+                                        case "ZA":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by type from Z-A...");
+                                            
+                                            break;
+                                        default:
+                                            System.out.print(clearScreen);
+                                            System.out.println("Invalid input. Please try again.");
+                                    }                                    
+                                    break;
+
+                                case "N":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Sort by A-Z (AZ) or Z-A (ZA)?");
+                                    String input6 = scanner.nextLine().toUpperCase();
+                                    switch(input6) {
+                                        case "AZ":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by narrative from A-Z...");
+                                            
+                                            break;
+                                        case "ZA":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by narrative from Z-A...");
+                                            
+                                            break;
+                                        default:
+                                            System.out.print(clearScreen);
+                                            System.out.println("Invalid input. Please try again.");
+                                    }                                  
+                                    break;
+
+                                case "B":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Sorting by bank reference..."); //????????????????????
+                                    
+                                    break;
+                                case "A":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Sort by ascending (ASC) or descending (DESC)?");
+                                    String input8 = scanner.nextLine().toUpperCase();
+                                    switch(input8) {
+                                        case "ASC":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by amount from lowest to highest...");
+                                            
+                                            break;
+                                        case "DESC":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by amount from highest to lowest...");
+                                            
+                                            break;
+                                        default:
+                                            System.out.print(clearScreen);
+                                            System.out.println("Invalid input. Please try again.");
+                                    }
+                                    
+                                    break;
+                                case "C":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Sort by A-Z (AZ) or Z-A (ZA)?");
+                                    String input9 = scanner.nextLine().toUpperCase();
+                                    switch(input9) {
+                                        case "AZ":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by category from A-Z...");
+                                            break;
+
+                                        case "ZA":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by category from Z-A...");
+                                            break;
+
+                                        default:
+                                            System.out.print(clearScreen);
+                                            System.out.println("Invalid input. Please try again.");
+                            }
+                        }
+                        break; 
+
+                        case "F":
+                            System.out.print(clearScreen);
+                            System.out.println("Filter by: \n 'D' - DATE \n 'T' - TYPE \n 'N' - NARRATIVE \n 'B' - BANK REFERENCE \n 'A' - AMOUNT \n 'C' - CATEGORY");
+                            String inputfilterTrans = scanner.nextLine().toUpperCase();
+                            switch(inputfilterTrans) {
+                                case "D":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Filtering by date...");
+                                    
+                                    break;
+                                case "T":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Filtering by type...");
+                                    
+                                    break;
+                                case "N":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Filtering by narrative...");
+                                    
+                                    break;
+                                case "B":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Filtering by bank reference...");
+                                    
+                                    break;
+                                case "A":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Filtering by amount...");
+                                    
+                                    break;
+                                case "C":
+                                    System.out.print(clearScreen);
+                                    System.out.println("Filtering by category...");
+                                    
+                                    break;
+                                default:
+                                    System.out.print(clearScreen);
+                                    System.out.println("Invalid input. Please try again.");
+                            }
+                            break;
+
                         case "Y":
                             System.out.print(clearScreen);
                             System.out.println("Returning to main menu...");
@@ -52,16 +219,16 @@ public class App {
                             System.out.print(clearScreen);
                             System.out.println("Invalid input. Please try again.");
                             break;
-                    } 
-                    break; 
+                        }
+                        break; 
 
                 case "B":
                     System.out.print(clearScreen);
                     System.out.println("Budget:");
-                    System.out.printf("%12s %8s %7s %15s\n", "Period", "Name", "Limit Amount", "Start Date");
+                    System.out.printf("%20s %20s %20s %20s\n", "Period", "Name", "Limit Amount", "Start Date");
                     System.out.println("-".repeat(120));
                     for (Budget budgets : budget) {
-                        System.out.printf("%12s %8s %7s %15s\n",
+                        System.out.printf("%20s %20s %20s %20s\n",
                             budgets.getPeriod(), budgets.getName(),
                             budgets.getLimitAmount(), budgets.getStartDate());
                     }
@@ -69,8 +236,8 @@ public class App {
                     System.out.println();
 
                     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
-                    String input3 = scanner.nextLine().toUpperCase();
-                    switch(input3) {
+                    String input10 = scanner.nextLine().toUpperCase();
+                    switch(input10) {
                         case "Y":
                             System.out.print(clearScreen);
                             System.out.println("Returning to main menu...");
