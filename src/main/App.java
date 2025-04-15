@@ -14,21 +14,23 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String clearScreen = "\u001B[2J";
+        String banner = ("      ██╗ ██████╗  ██████╗██╗██████╗     ███████╗██╗███╗   ██╗ █████╗ ███╗   ██╗ ██████╗███████╗\r\n" + //
+        "      ██║██╔═══██╗██╔════╝██║██╔══██╗    ██╔════╝██║████╗  ██║██╔══██╗████╗  ██║██╔════╝██╔════╝\r\n" + //
+        "      ██║██║   ██║█████╗  ██║██████╔╝    █████╗  ██║██╔██╗ ██║███████║██╔██╗ ██║██║     █████╗  \r\n" + //
+        " ██   ██║██║   ██║    ██║ ██║██╔═══╝     ██╔══╝  ██║██║╚██╗██║██╔══██║██║╚██╗██║██║     ██╔══╝  \r\n" + //
+        " ╚█████╔╝╚██████╔╝██████║ ██║██║         ██║     ██║██║ ╚████║██║  ██║██║ ╚████║╚██████╗███████╗\r\n" + //
+        "  ╚════╝  ╚═════╝ ╚═════╝ ╚═╝╚═╝         ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝\r\n" + //
+        "\r\n" + //
+        "                                   J O S I P   F I N A N C E\r\n" + //
+        "");
         System.out.println();
-        System.out.println("      ██╗ ██████╗  ██████╗██╗██████╗     ███████╗██╗███╗   ██╗ █████╗ ███╗   ██╗ ██████╗███████╗\r\n" + //
-                        "      ██║██╔═══██╗██╔════╝██║██╔══██╗    ██╔════╝██║████╗  ██║██╔══██╗████╗  ██║██╔════╝██╔════╝\r\n" + //
-                        "      ██║██║   ██║█████╗  ██║██████╔╝    █████╗  ██║██╔██╗ ██║███████║██╔██╗ ██║██║     █████╗  \r\n" + //
-                        " ██   ██║██║   ██║    ██║ ██║██╔═══╝     ██╔══╝  ██║██║╚██╗██║██╔══██║██║╚██╗██║██║     ██╔══╝  \r\n" + //
-                        " ╚█████╔╝╚██████╔╝██████║ ██║██║         ██║     ██║██║ ╚████║██║  ██║██║ ╚████║╚██████╗███████╗\r\n" + //
-                        "  ╚════╝  ╚═════╝ ╚═════╝ ╚═╝╚═╝         ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝\r\n" + //
-                        "\r\n" + //
-                        "                                   J O S I P   F I N A N C E\r\n" + //
-                        "");
-        System.out.println("-".repeat(100));
+        String bannerlines = ("-".repeat(100));
         ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
         ArrayList<Budget> budget = BudgetManager.getBudgetList();
         // ArrayList<Category> transport = CategoryManager.getCategoryList(); //PAGAIDAM NEVAJAG
         while (true) {
+            System.out.println(banner);
+            System.out.println(bannerlines);
             System.out.println("Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'X' - EXIT");
             String input = scanner.nextLine().toUpperCase();
             switch(input) {
@@ -44,14 +46,14 @@ public class App {
                     }
 
                     System.out.println();
-                    System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER");
+                    System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW TRANSACTION \n 'D' - DELETE TRANSACTION");
                     System.out.println("--------------------------");
                     System.out.println(" 'Y' - RETURN TO MAIN \n 'X' - EXIT");
                     String input2 = scanner.nextLine().toUpperCase();
                     switch(input2) {
                         case "S":
                             System.out.print(clearScreen);
-                            System.err.println("Sort by: \n 'D' - DATE \n 'T' - TYPE \n 'N' - NARRATIVE \n 'B' - BANK REFERENCE \n 'A' - AMOUNT \n 'C' - CATEGORY");
+                            System.err.println("Sort by: \n 'D' - DATE \n 'T' - TYPE \n 'N' - NARRATIVE \n 'A' - AMOUNT \n 'C' - CATEGORY");
                             String input3 = scanner.nextLine().toUpperCase();
                             switch(input3) {
                                 case "D":
@@ -117,11 +119,6 @@ public class App {
                                     }                                  
                                     break;
 
-                                case "B":
-                                    System.out.print(clearScreen);
-                                    System.out.println("Sorting by bank reference..."); //????????????????????
-                                    
-                                    break;
                                 case "A":
                                     System.out.print(clearScreen);
                                     System.out.println("Sort by ascending (ASC) or descending (DESC)?");
@@ -205,10 +202,29 @@ public class App {
                                     System.out.println("Invalid input. Please try again.");
                             }
                             break;
+                        
+                        case "N":
+                            System.out.print(clearScreen);
+                            System.out.println("New Transaction:");
+                            System.out.println("Enter the transaction type (INCOMING, OUTGOING, PURCHASE): ");
+                            String type = scanner.nextLine().toUpperCase();
+                            System.out.println("Enter transaction narrative:");
+                            String narrative = scanner.nextLine();
+                            System.out.println("Enter bank reference:");
+                            String bankReference = scanner.nextLine();
+                            System.out.println("Enter transaction category:");
+                            String category = scanner.nextLine();
+                            System.out.println("Enter transaction amount:");
+                            double amount = scanner.nextDouble();
+                            scanner.nextLine();
+                            transactions.add(new Transaction(LocalDate.now(), TransactionType.valueOf(type), narrative, bankReference, amount, category));
+                            ArrayList<Transaction> addTransactions = TransactionManager.addTransaction(new Transaction(LocalDate.now(), TransactionType.valueOf(type), narrative, bankReference, amount, category));
+                        case "D":
 
                         case "Y":
                             System.out.print(clearScreen);
                             System.out.println("Returning to main menu...");
+                            System.out.println();
                             break;
                         case "X":
                             System.out.print(clearScreen);
@@ -234,13 +250,15 @@ public class App {
                     }
 
                     System.out.println();
-
+                    System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW BUDGET \n 'D' - DELETE BUDGET");
+                    System.out.println("--------------------------");
                     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
                     String input10 = scanner.nextLine().toUpperCase();
                     switch(input10) {
                         case "Y":
                             System.out.print(clearScreen);
                             System.out.println("Returning to main menu...");
+                            System.out.println();
                             break;
                         case "X":
                             System.out.print(clearScreen);
@@ -253,31 +271,39 @@ public class App {
                             break;
                     } 
                     break;
-                // case "C":
-                //PAGAIDAM NEVAJAG
-                 
-                //     System.out.println();
-                //     System.out.println("                  ID                       Period          Limit Amount                            Name                  Start Date           ");
-                //     System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
-                //     // for (Category category : transport) {
-                //     //     System.out.println(category);
-                //     // }
-                //     System.out.println();
-                //     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
-                //     String input4 = scanner.nextLine().toUpperCase();
-                //     switch(input4) {
-                //         case "Y":
-                //             System.out.println("Returning to main menu...");
-                //             break;
-                //         case "X":
-                //             System.out.println("Exiting...");
-                //             scanner.close();
-                //             return;
-                //         default:
-                //             System.out.println("Invalid input. Please try again.");
-                //             break;
-                //     } 
-                    // break;
+                case "C":
+                System.out.print(clearScreen);
+                System.out.println("Budget:");
+                System.out.printf("%20s %20s %20s %20s\n", "Period", "Name", "Limit Amount", "Start Date");
+                System.out.println("-".repeat(120));
+                for (Budget budgets : budget) {
+                    System.out.printf("%20s %20s %20s %20s\n",
+                        budgets.getPeriod(), budgets.getName(),
+                        budgets.getLimitAmount(), budgets.getStartDate());
+                }
+
+                    System.out.println();
+                    System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW CATEGORY \n 'D' - DELETE CATEGORY");
+                    System.out.println("--------------------------");
+                    System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
+                    String input4 = scanner.nextLine().toUpperCase();
+                    switch(input4) {
+                        case "Y":
+                            System.out.print(clearScreen);
+                            System.out.println("Returning to main menu...");
+                            System.out.println();
+                            break;
+                        case "X":
+                            System.out.print(clearScreen);
+                            System.out.println("Exiting...");
+                            scanner.close();
+                            return;
+                        default:
+                            System.out.print(clearScreen);
+                            System.out.println("Invalid input. Please try again.");
+                            break;
+                    } 
+                    break;
                 case "X":
                     System.out.print(clearScreen);
                     System.out.println();

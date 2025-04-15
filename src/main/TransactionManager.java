@@ -88,5 +88,7 @@ public class TransactionManager {
 
     public static void addTransaction(Transaction transaction) throws Exception {
         BufferedWriter writer = Helper.getWriter("fake_transactions.csv", StandardOpenOption.APPEND);
+        writer.write(transaction.toString() + "\n");
+        writer.close();
     }
 }
