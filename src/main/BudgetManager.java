@@ -33,5 +33,7 @@ public class BudgetManager {
 
     public static void addBudget(Budget budget) throws Exception {
         BufferedWriter writer = Helper.getWriter("budgets.csv", StandardOpenOption.APPEND);
+        writer.write(budget.toString() + "\n");
+        writer.close();
     }
 }

@@ -34,5 +34,7 @@ public class CategoryManager {
 
     public static void addCategory(Category category) throws Exception {
         BufferedWriter writer = Helper.getWriter("categories.csv", StandardOpenOption.APPEND);
+        writer.write(category.toString() + "\n");
+        writer.close();
     }
 }
