@@ -24,3 +24,4 @@ ID,Date,Type,Narrative,Bank Reference,Amount,Category
 550e8400-e29b-41d4-a716-446655440022,2025-01-25,outgoing,Car loan payment LV85BANK666777888999 InCredit,TXN1023,-200.00,Transport
 550e8400-e29b-41d4-a716-446655440023,2025-01-26,purchase,Medical appointment LV57PARX001122334455 HealthClinic,TXN1024,-35.00,Healthcare
 550e8400-e29b-41d4-a716-446655440024,2025-01-27,incoming,Performance bonus LV99HABA123409876543 Job,TXN1025,300.00,Bonuses
+c65fdeae-85f7-40cc-93c9-fe9e030d4f30,2025-04-19,INCOMING,idk,idk,250.4,idk
