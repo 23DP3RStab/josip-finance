@@ -37,12 +37,12 @@ public class App {
                 case "T":
                     System.out.print(clearScreen);
                     System.out.println("Transactions:");
-                    System.out.printf("%-7s %-12s %-12s %-50s %-8s %7s %15s\n", "Nr.", "Date", "Type", "Narrative", "Bank Reference", "Amount", "Category");
-                    System.out.println("-".repeat(125));
+                    System.out.printf("%-12s %-12s %-50s %-8s %7s %15s\n", "Date", "Type", "Narrative", "Bank Reference", "Amount", "Category");
+                    System.out.println("-".repeat(120));
                     for (Transaction transaction : transactions) {
-                        System.out.printf("%-5s %-12s %-12s %-55s %-10s %-10.2f %-10s\n",
-                            transaction.getDate(), transaction.getType(), transaction.getNarrative(), 
-                            transaction.getBankReference(), transaction.getAmount(), transaction.getCategory());
+                        System.out.printf("%-12s %-12s %-55s %-10s %-10.2f %-10s\n",
+                            transaction.getDate(), transaction.getType(),
+                            transaction.getNarrative(), transaction.getBankReference(), transaction.getAmount(), transaction.getCategory());
                     }
 
                     System.out.println();
@@ -217,9 +217,8 @@ public class App {
                             System.out.println("Enter transaction amount:");
                             double amount = scanner.nextDouble();
                             scanner.nextLine();
-                            Transaction newTransaction = new Transaction(LocalDate.now(), TransactionType.valueOf(type), narrative, bankReference, amount, category);
-                            transactions.add(newTransaction);
-                            TransactionManager.addTransaction(newTransaction);
+                            transactions.add(new Transaction(LocalDate.now(), TransactionType.valueOf(type), narrative, bankReference, amount, category));
+                            ArrayList<Transaction> addTransactions = TransactionManager.addTransaction(new Transaction(LocalDate.now(), TransactionType.valueOf(type), narrative, bankReference, amount, category));
                         case "D":
 
                         case "Y":
