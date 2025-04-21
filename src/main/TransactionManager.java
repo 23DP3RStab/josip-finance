@@ -91,4 +91,24 @@ public class TransactionManager {
         writer.write(transaction.toString() + "\n");
         writer.close();
     }
+
+    public static void deleteTransaction(Transaction transaction) throws Exception {
+        BufferedReader reader = Helper.getReader("fake_transactions.csv");
+        ArrayList<String> lines = new ArrayList<>();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            lines.add(line);
+        }
+        reader.close();
+
+        BufferedWriter writer = Helper.getWriter("fake_transactions.csv", StandardOpenOption.TRUNCATE_EXISTING);
+        for (String fileLine : lines) {
+            String[] parts = fileLine.split(",");
+            if (parts.length > 0 && !parts[0].isEmpty() && !parts[0].equals(transaction.getID().toString())) {
+                writer.write(fileLine + "\n");
+            }
+        }
+        writer.close();
+    }
 }

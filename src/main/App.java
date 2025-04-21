@@ -27,7 +27,7 @@ public class App {
         String bannerlines = ("-".repeat(100));
         ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
         ArrayList<Budget> budget = BudgetManager.getBudgetList();
-        // ArrayList<Category> transport = CategoryManager.getCategoryList(); //PAGAIDAM NEVAJAG
+        // ArrayList<Category> transport = CategoryManager.getCategoryList();
         while (true) {
             System.out.println(banner);
             System.out.println(bannerlines);
@@ -39,12 +39,13 @@ public class App {
                     System.out.println("Transactions:");
                     System.out.printf("%-7s %-12s %-12s %-50s %-8s %7s %15s\n", "Nr.", "Date", "Type", "Narrative", "Bank Reference", "Amount", "Category");
                     System.out.println("-".repeat(125));
+                    int transactionNumber = 1;
                     for (Transaction transaction : transactions) {
                         System.out.printf("%-5s %-12s %-12s %-55s %-10s %-10.2f %-10s\n",
+                            transactionNumber++,
                             transaction.getDate(), transaction.getType(), transaction.getNarrative(), 
                             transaction.getBankReference(), transaction.getAmount(), transaction.getCategory());
                     }
-
                     System.out.println();
                     System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW TRANSACTION \n 'D' - DELETE TRANSACTION");
                     System.out.println("--------------------------");
@@ -220,7 +221,26 @@ public class App {
                             Transaction newTransaction = new Transaction(LocalDate.now(), TransactionType.valueOf(type), narrative, bankReference, amount, category);
                             transactions.add(newTransaction);
                             TransactionManager.addTransaction(newTransaction);
+                            System.out.print(clearScreen);
+                            System.out.println("Transaction added successfully!");
+                            break;
+                            
                         case "D":
+                            System.out.println(clearScreen);
+                            System.out.println("Enter the transaction number to delete: ");
+                            int transactionNumberToDelete = scanner.nextInt();
+                            scanner.nextLine();
+                            if (transactionNumberToDelete > 0 && transactionNumberToDelete <= transactions.size()) {
+                                Transaction transactionToDelete = transactions.get(transactionNumberToDelete - 1);
+                                transactions.remove(transactionNumberToDelete - 1);
+                                TransactionManager.deleteTransaction(transactionToDelete);
+                                System.out.println(clearScreen);
+                                System.out.println("Transaction deleted successfully!");
+                            } else {
+                                System.out.println(clearScreen);
+                                System.out.println("Invalid transaction number. Please try again.");
+                            }
+                            break;
 
                         case "Y":
                             System.out.print(clearScreen);
@@ -256,6 +276,25 @@ public class App {
                     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
                     String input10 = scanner.nextLine().toUpperCase();
                     switch(input10) {
+                        case "N":
+                        System.out.print(clearScreen);
+                        System.out.println("New Budget:");
+                        System.out.println("Enter the period (DAILY, WEEKLY, MONTHLY, YEARLY): ");
+                        String period = scanner.nextLine().toUpperCase();
+                        System.out.println("Enter budget name:");
+                        String name = scanner.nextLine();
+                        System.out.println("Enter budget limit amount:");
+                        double limitAmount = scanner.nextDouble();
+                        scanner.nextLine();
+                        Budget newBudget = new Budget(BudgetPeriod.valueOf(period), limitAmount, name, LocalDate.now());
+                        budget.add(newBudget);
+                        BudgetManager.addBudget(newBudget);
+                        System.out.print(clearScreen);
+                        System.out.println("Budget added successfully!");
+                        break;
+
+                        // case "D":
+
                         case "Y":
                             System.out.print(clearScreen);
                             System.out.println("Returning to main menu...");
@@ -272,6 +311,7 @@ public class App {
                             break;
                     } 
                     break;
+                    
                 case "C":
                 System.out.print(clearScreen);
                 System.out.println("Budget:");
@@ -289,6 +329,20 @@ public class App {
                     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
                     String input4 = scanner.nextLine().toUpperCase();
                     switch(input4) {
+                        // case "N":
+                        // System.out.print(clearScreen);
+                        // System.out.println("New Category:");
+                        // System.out.println("Enter the category type (INCOME, EXPENSE): ");
+                        // String categorytype = scanner.nextLine().toUpperCase();
+                        // System.out.println("Enter category name:");
+                        // String categoryname = scanner.nextLine();
+                        // Category newCategory = new Category(categoryname, CategoryType.valueOf(categorytype));
+                        // transport.add(newCategory);
+                        // CategoryManager.addCategory(newCategory);
+                        // System.out.print(clearScreen);
+                        // System.out.println("Category added successfully!");
+                        // break;
+
                         case "Y":
                             System.out.print(clearScreen);
                             System.out.println("Returning to main menu...");
@@ -305,6 +359,7 @@ public class App {
                             break;
                     } 
                     break;
+
                 case "X":
                     System.out.print(clearScreen);
                     System.out.println();
