@@ -59,15 +59,15 @@ public class App {
                             switch(input3) {
                                 case "D":
                                 System.out.print(clearScreen);
-                                System.out.println("Sort by oldest to newest (ON) or newest to oldest (NO)?");
+                                System.out.println("Sort by oldest to newest (ASC) or newest to oldest (DESC)?");
                                 String input4 = scanner.nextLine().toUpperCase();
                                 switch(input4) {
-                                    case "ON":
+                                    case "ASC":
                                                 System.out.print(clearScreen);
                                                 System.out.println("Sorting by date from oldest to newest...");
                                                 
                                                 break;
-                                            case "NO":
+                                            case "DESC":
                                                 System.out.print(clearScreen);
                                                 System.out.println("Sorting by date from newest to oldest...");
                                                 
@@ -226,7 +226,7 @@ public class App {
                             break;
                             
                         case "D":
-                            System.out.println(clearScreen);
+                            System.out.println();
                             System.out.println("Enter the transaction number to delete: ");
                             int transactionNumberToDelete = scanner.nextInt();
                             scanner.nextLine();
