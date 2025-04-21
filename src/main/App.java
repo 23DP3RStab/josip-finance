@@ -233,7 +233,7 @@ public class App {
                             if (transactionNumberToDelete > 0 && transactionNumberToDelete <= transactions.size()) {
                                 Transaction transactionToDelete = transactions.get(transactionNumberToDelete - 1);
                                 transactions.remove(transactionNumberToDelete - 1);
-                                TransactionManager.deleteTransaction(transactionToDelete);
+                                TransactionManager.updateTransactionInFile(transactionToDelete);
                                 System.out.println(clearScreen);
                                 System.out.println("Transaction deleted successfully!");
                             } else {
