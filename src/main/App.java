@@ -1,11 +1,12 @@
 package main;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import main.Budget.BudgetPeriod;
 import main.Category.CategoryType;
 import main.Transaction.TransactionType;
+import java.util.UUID;
 
 
 // VSCode: F1 -> Java: Clean Workspace
@@ -26,8 +27,10 @@ public class App {
         System.out.println();
         String bannerlines = ("-".repeat(100));
         ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
-        ArrayList<Budget> budget = BudgetManager.getBudgetList();
-        // ArrayList<Category> transport = CategoryManager.getCategoryList();
+        ArrayList<Budget> budgets = BudgetManager.getBudgetList();
+        // ArrayList<Category> categories = CategoryManager.getCategoryList();
+        HashMap<Integer, UUID> transactionMap = new HashMap<>();
+
         while (true) {
             System.out.println(banner);
             System.out.println(bannerlines);
@@ -41,6 +44,7 @@ public class App {
                     System.out.println("-".repeat(125));
                     int transactionNumber = 1;
                     for (Transaction transaction : transactions) {
+                        transactionMap.put(transactionNumber, transaction.getID());
                         System.out.printf("%-5s %-12s %-12s %-55s %-10s %-10.2f %-10s\n",
                             transactionNumber++,
                             transaction.getDate(), transaction.getType(), transaction.getNarrative(), 
@@ -230,10 +234,10 @@ public class App {
                             System.out.println("Enter the transaction number to delete: ");
                             int transactionNumberToDelete = scanner.nextInt();
                             scanner.nextLine();
-                            if (transactionNumberToDelete > 0 && transactionNumberToDelete <= transactions.size()) {
-                                Transaction transactionToDelete = transactions.get(transactionNumberToDelete - 1);
-                                transactions.remove(transactionNumberToDelete - 1);
-                                TransactionManager.updateTransactionInFile(transactionToDelete);
+                            if (transactionMap.containsKey(transactionNumberToDelete)) {
+                                UUID transactionToDelete = transactionMap.get(transactionNumberToDelete);
+                                transactions.removeIf(transaction -> transaction.getID().equals(transactionToDelete));
+                                TransactionManager.deleteTransactionFromFile(transactionToDelete);
                                 System.out.println(clearScreen);
                                 System.out.println("Transaction deleted successfully!");
                             } else {
@@ -264,10 +268,10 @@ public class App {
                     System.out.println("Budget:");
                     System.out.printf("%20s %20s %20s %20s\n", "Period", "Name", "Limit Amount", "Start Date");
                     System.out.println("-".repeat(120));
-                    for (Budget budgets : budget) {
+                    for (Budget budget : budgets) {
                         System.out.printf("%20s %20s %20s %20s\n",
-                            budgets.getPeriod(), budgets.getName(),
-                            budgets.getLimitAmount(), budgets.getStartDate());
+                            budget.getPeriod(), budget.getName(),
+                            budget.getLimitAmount(), budget.getStartDate());
                     }
 
                     System.out.println();
@@ -287,7 +291,7 @@ public class App {
                         double limitAmount = scanner.nextDouble();
                         scanner.nextLine();
                         Budget newBudget = new Budget(BudgetPeriod.valueOf(period), limitAmount, name, LocalDate.now());
-                        budget.add(newBudget);
+                        budgets.add(newBudget);
                         BudgetManager.addBudget(newBudget);
                         System.out.print(clearScreen);
                         System.out.println("Budget added successfully!");
@@ -317,10 +321,10 @@ public class App {
                 System.out.println("Budget:");
                 System.out.printf("%20s %20s %20s %20s\n", "Period", "Name", "Limit Amount", "Start Date");
                 System.out.println("-".repeat(120));
-                for (Budget budgets : budget) {
+                for (Budget budget : budgets) {
                     System.out.printf("%20s %20s %20s %20s\n",
-                        budgets.getPeriod(), budgets.getName(),
-                        budgets.getLimitAmount(), budgets.getStartDate());
+                        budget.getPeriod(), budget.getName(),
+                        budget.getLimitAmount(), budget.getStartDate());
                 }
 
                     System.out.println();
