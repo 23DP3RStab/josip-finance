@@ -31,7 +31,6 @@ public class App {
         ArrayList<Category> categories = CategoryManager.getCategoryList();
         HashMap<Integer, UUID> transactionMap = new HashMap<>();
         HashMap<Integer, UUID> budgetMap = new HashMap<>();
-        HashMap<Integer, String> categoryMap = new HashMap<>();
 
         while (true) {
             System.out.println(banner);
@@ -300,7 +299,22 @@ public class App {
                         System.out.println("Budget added successfully!");
                         break;
 
-                        // case "D":
+                        case "D":
+                        System.out.println();
+                        System.out.println("Enter the budget number to delete: ");
+                        int budgetNumberToDelete = scanner.nextInt();
+                        scanner.nextLine();
+                        if (budgetMap.containsKey(budgetNumberToDelete)) {
+                            UUID budgetToDelete = budgetMap.get(budgetNumberToDelete);
+                            budgets.removeIf(budget -> budget.getID().equals(budgetToDelete));
+                            BudgetManager.deleteBudgetFromFile(budgetToDelete);
+                            System.out.println(clearScreen);
+                            System.out.println("Budget deleted successfully!");
+                        } else {
+                            System.out.println(clearScreen);
+                            System.out.println("Invalid budget number. Please try again.");
+                        }
+                        break;
 
                         case "Y":
                             System.out.print(clearScreen);
@@ -322,13 +336,10 @@ public class App {
                 case "C":
                     System.out.print(clearScreen);
                     System.out.println("Categories:");
-                    System.out.printf("%-7s %-25s %-12s\n", "Nr.", "Name", "Type");
+                    System.out.printf("%-25s %-12s\n","Name", "Type");
                     System.out.println("-".repeat(125));
-                    int categoryNumber = 1;
                     for (Category category : categories) {
-                        categoryMap.put(categoryNumber, category.getName());
-                        System.out.printf("%-5s %-25s %-12s\n",
-                            categoryNumber++,
+                        System.out.printf("%-25s %-12s\n",
                             category.getName(), category.getType());
                     }
 
@@ -338,19 +349,35 @@ public class App {
                     System.out.println("Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT");
                     String input4 = scanner.nextLine().toUpperCase();
                     switch(input4) {
-                        // case "N":
-                        // System.out.print(clearScreen);
-                        // System.out.println("New Category:");
-                        // System.out.println("Enter the category type (INCOME, EXPENSE): ");
-                        // String categorytype = scanner.nextLine().toUpperCase();
-                        // System.out.println("Enter category name:");
-                        // String categoryname = scanner.nextLine();
-                        // Category newCategory = new Category(categoryname, CategoryType.valueOf(categorytype));
-                        // transport.add(newCategory);
-                        // CategoryManager.addCategory(newCategory);
-                        // System.out.print(clearScreen);
-                        // System.out.println("Category added successfully!");
-                        // break;
+                        case "N":
+                        System.out.print(clearScreen);
+                        System.out.println("New Category:");
+                        System.out.println("Enter the category type (INCOME, EXPENSE): ");
+                        String categorytype = scanner.nextLine().toUpperCase();
+                        System.out.println("Enter category name:");
+                        String categoryname = scanner.nextLine();
+                        Category newCategory = new Category(categoryname, CategoryType.valueOf(categorytype));
+                        categories.add(newCategory);
+                        CategoryManager.addCategory(newCategory);
+                        System.out.print(clearScreen);
+                        System.out.println("Category added successfully!");
+                        break;
+
+                        case "D":
+                            System.out.println();
+                            System.out.println("Enter the category name to delete: ");
+                            String categoryNameToDelete = scanner.nextLine();
+                            scanner.nextLine();
+                            if (categoryMap.containsKey(categoryNameToDelete)) {
+                                categories.removeIf(category -> category.getName().equals(categoryNameToDelete));
+                                CategoryManager.deleteCategroyFromFile(categoryNameToDelete);
+                                System.out.println(clearScreen);
+                                System.out.println("Transaction deleted successfully!");
+                            } else {
+                                System.out.println(clearScreen);
+                                System.out.println("Invalid transaction number. Please try again.");
+                            }
+                            break;
 
                         case "Y":
                             System.out.print(clearScreen);
