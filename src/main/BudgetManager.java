@@ -36,4 +36,25 @@ public class BudgetManager {
         writer.write(budget.toString() + "\n");
         writer.close();
     }
+
+    public static void deleteBudgetFromFile(UUID budgetID) throws Exception {
+        BufferedReader reader = Helper.getReader("budgets.csv");
+        ArrayList<String> lines = new ArrayList<>();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts.length > 0 && !parts[0].equals(budgetID.toString())) {
+                lines.add(line);
+            }
+        }
+        reader.readLine();
+
+        BufferedWriter writer = Helper.getWriter("budgets.csv", StandardOpenOption.TRUNCATE_EXISTING);
+        for (String fileLine : lines) {
+            writer.write(fileLine);
+            writer.newLine();
+        }
+        writer.close();
+    }
 }
