@@ -11,13 +11,13 @@ public class Category {
     
     private String name;
     private CategoryType type;
-    private double spendingLimit;
+    // private double spendingLimit;
 
-    public Category(String name, CategoryType type, double spendingLimit) {
-        this.name = name;
-        this.type = type;
-        this.spendingLimit = spendingLimit;
-    }
+    // public Category(String name, CategoryType type, double spendingLimit) {
+    //     this.name = name;
+    //     this.type = type;
+    //     this.spendingLimit = spendingLimit;
+    // }
 
     public Category(String name, CategoryType type) {
         this.name = name;
@@ -28,20 +28,16 @@ public class Category {
         return this.name;
     }
 
-    public CategoryType getCategoryType() {
+    public CategoryType getType() {
         return this.type;
     }
 
-    public double getSpendingLimit() {
-        return this.spendingLimit;
-    }
+    // public double getSpendingLimit() {
+    //     return this.spendingLimit;
+    // }
 
     @Override
     public String toString() {
-    return "Category{" +
-            "name=" + name +
-            ", type=" + type +
-            ", spendigLimit=" + spendingLimit +
-            '}';
+        return name + "," + type;
     }
 }

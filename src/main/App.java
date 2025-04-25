@@ -28,8 +28,10 @@ public class App {
         String bannerlines = ("-".repeat(100));
         ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
         ArrayList<Budget> budgets = BudgetManager.getBudgetList();
-        // ArrayList<Category> categories = CategoryManager.getCategoryList();
+        ArrayList<Category> categories = CategoryManager.getCategoryList();
         HashMap<Integer, UUID> transactionMap = new HashMap<>();
+        HashMap<Integer, UUID> budgetMap = new HashMap<>();
+        HashMap<Integer, String> categoryMap = new HashMap<>();
 
         while (true) {
             System.out.println(banner);
@@ -37,6 +39,7 @@ public class App {
             System.out.println("Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'X' - EXIT");
             String input = scanner.nextLine().toUpperCase();
             switch(input) {
+                // TRANSACTION CASE
                 case "T":
                     System.out.print(clearScreen);
                     System.out.println("Transactions:");
@@ -262,7 +265,7 @@ public class App {
                             break;
                         }
                         break; 
-
+                // BUDGET CASE
                 case "B":
                     System.out.print(clearScreen);
                     System.out.println("Budget:");
@@ -315,17 +318,19 @@ public class App {
                             break;
                     } 
                     break;
-                    
+                // CATEGORY CASE
                 case "C":
-                System.out.print(clearScreen);
-                System.out.println("Budget:");
-                System.out.printf("%20s %20s %20s %20s\n", "Period", "Name", "Limit Amount", "Start Date");
-                System.out.println("-".repeat(120));
-                for (Budget budget : budgets) {
-                    System.out.printf("%20s %20s %20s %20s\n",
-                        budget.getPeriod(), budget.getName(),
-                        budget.getLimitAmount(), budget.getStartDate());
-                }
+                    System.out.print(clearScreen);
+                    System.out.println("Categories:");
+                    System.out.printf("%-7s %-25s %-12s\n", "Nr.", "Name", "Type");
+                    System.out.println("-".repeat(125));
+                    int categoryNumber = 1;
+                    for (Category category : categories) {
+                        categoryMap.put(categoryNumber, category.getName());
+                        System.out.printf("%-5s %-25s %-12s\n",
+                            categoryNumber++,
+                            category.getName(), category.getType());
+                    }
 
                     System.out.println();
                     System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW CATEGORY \n 'D' - DELETE CATEGORY");

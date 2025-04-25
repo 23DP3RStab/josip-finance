@@ -24,9 +24,8 @@ public class CategoryManager {
 
             String name = parts[0];
             CategoryType type = CategoryType.valueOf(parts[1]);
-            double spendingLimit = Double.valueOf(parts[4]);
 
-            Category category = new Category(name, type, spendingLimit);
+            Category category = new Category(name, type);
             categoryList.add(category);
         }
         return categoryList;

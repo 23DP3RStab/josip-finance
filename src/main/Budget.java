@@ -72,6 +72,6 @@ public class Budget {
 
     @Override
     public String toString() {
-        return id + "\t" + period + "\t" + limitAmount + "\t" + name + "\t" + startDate;
+        return id + "," + period + "," + limitAmount + "," + name + "," + startDate;
     }
 }
