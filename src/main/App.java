@@ -367,10 +367,9 @@ public class App {
                             System.out.println();
                             System.out.println("Enter the category name to delete: ");
                             String categoryNameToDelete = scanner.nextLine();
-                            scanner.nextLine();
-                            if (categoryMap.containsKey(categoryNameToDelete)) {
+                            if (!categories.isEmpty()) {
                                 categories.removeIf(category -> category.getName().equals(categoryNameToDelete));
-                                CategoryManager.deleteCategroyFromFile(categoryNameToDelete);
+                                CategoryManager.deleteCategoryFromFile(categoryNameToDelete);
                                 System.out.println(clearScreen);
                                 System.out.println("Transaction deleted successfully!");
                             } else {
