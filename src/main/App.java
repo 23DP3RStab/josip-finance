@@ -28,7 +28,6 @@ public class App {
         "\r\n" + //
         "                                   J O S I P   F I N A N C E\r\n" + //
         "");
-        System.out.println();
         String bannerlines = ("-".repeat(100));
         List<Transaction> transactions = TransactionManager.getTransactionList();
         List<Budget> budgets = BudgetManager.getBudgetList();
@@ -37,6 +36,7 @@ public class App {
         HashMap<Integer, UUID> budgetMap = new HashMap<>();
 
         while (true) {
+            System.out.println();
             System.out.println(banner);
             System.out.println(bannerlines);
             System.out.println("Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'X' - EXIT");
@@ -524,19 +524,7 @@ public class App {
                 transaction.getBankReference(), transaction.getAmount(), transaction.getCategory());
         }
     }
-
-    public static List<Transaction> sortTransactions(List<Transaction> transactions, Comparator<Transaction> comparator) {
-        List<Transaction> sortedTransactions = new ArrayList<>(transactions);
-        sortedTransactions.sort(comparator);
-        return sortedTransactions;
-    }
-
-    public static List<Transaction> filterTransactions(List<Transaction> transactions, Predicate<Transaction> predicate) {
-        return transactions.stream()
-            .filter(predicate)
-            .collect(Collectors.toList());
-    }
-
+    
     public static void deleteTransactions(Scanner scanner, String clearScreen, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
         System.out.println();
         System.out.println("Enter the transaction number to delete: ");
@@ -556,5 +544,41 @@ public class App {
             System.out.println(clearScreen);
             System.out.println("Invalid transaction number. Please try again.");
         }
+    }
+
+    public static List<Transaction> sortTransactions(List<Transaction> transactions, Comparator<Transaction> comparator) {
+        List<Transaction> sortedTransactions = new ArrayList<>(transactions);
+        sortedTransactions.sort(comparator);
+        return sortedTransactions;
+    }
+
+    public static List<Transaction> filterTransactions(List<Transaction> transactions, Predicate<Transaction> predicate) {
+        return transactions.stream()
+            .filter(predicate)
+            .collect(Collectors.toList());
+    }
+
+    public static List<Budget> sortBudgets(List<Budget> budgets, Comparator<Budget> comparator) {
+        List<Budget> sortedBudgets = new ArrayList<>(budgets);
+        sortedBudgets.sort(comparator);
+        return sortedBudgets;
+    }
+
+    public static List<Budget> filterBudgets(List<Budget> budgets, Predicate<Budget> predicate) {
+        return budgets.stream()
+            .filter(predicate)
+            .collect(Collectors.toList());
+    }
+
+    public static List<Category> sortCategories(List<Category> categories, Comparator<Category> comparator) {
+        List<Category> sortedCategories = new ArrayList<>(categories);
+        sortedCategories.sort(comparator);
+        return sortedCategories;
+    }
+
+    public static List<Category> filterCategories(List<Category> categories, Predicate<Category> predicate) {
+        return categories.stream()
+            .filter(predicate)
+            .collect(Collectors.toList());
     }
 }
