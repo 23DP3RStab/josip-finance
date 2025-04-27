@@ -1,6 +1,6 @@
 # Josip Finance
 
-Josip Finance is a software to review your transactions as well as viewing statistics to analyze bad spending patterns.
+Josip Finance is a software to review your transactions as well as view statistics to analyze bad spending patterns.
 
 ### TODO:
 
@@ -9,11 +9,11 @@ Josip Finance is a software to review your transactions as well as viewing stati
 - [ ] class for statistics ?
 - [x] class for budget
 - [x] class for category
-- [x] sorting method
-- [ ] filter method
+- [ ] sorting methods 1/3
+- [ ] filter methods 1/3
 - [ ] regular app cycle
 - [x] manager classes reading data from files
+- [ ] add deletion and other options to sorted and filtered lists
 
 
-change input names
-add deletion to sorted and filtered lists, and other options
+change input names.
