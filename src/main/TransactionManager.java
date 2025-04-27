@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import main.Transaction.TransactionType;
-
 public class TransactionManager {
 
     public static ArrayList<Transaction> getTransactionList() throws Exception {

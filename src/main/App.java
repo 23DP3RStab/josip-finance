@@ -47,35 +47,40 @@ public class App {
                     System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW TRANSACTION \n 'D' - DELETE TRANSACTION");
                     System.out.println("--------------------------");
                     System.out.println(" 'Y' - RETURN TO MAIN \n 'X' - EXIT");
-                    String input2 = scanner.nextLine().toUpperCase();
-                    switch(input2) {
+                    input = scanner.nextLine().toUpperCase();
+                    switch(input) {
                         case "S":
                             System.out.print(clearScreen);
                             System.err.println("Sort by: \n 'D' - DATE \n 'T' - TYPE \n 'N' - NARRATIVE \n 'A' - AMOUNT \n 'C' - CATEGORY");
-                            String input3 = scanner.nextLine().toUpperCase();
-                            switch(input3) {
+                            input = scanner.nextLine().toUpperCase();
+                            switch(input) {
                                 case "D":
-                                System.out.print(clearScreen);
-                                System.out.println("Sort by oldest to newest (A) or newest to oldest (D)?");
-                                String input4 = scanner.nextLine().toUpperCase();
-                                switch(input4) {
-                                    case "A":
-                                        System.out.print(clearScreen);
-                                        System.out.println("Sorting by date from oldest to newest...");
-                                        List<Transaction> sortedByDate = sortTransactions(transactions, Comparator.comparing(Transaction::getDate));
-                                        displayTransactions(clearScreen, transactionMap, sortedByDate);
-                                        input = scanner.nextLine().toUpperCase();
-                                        break;
-                                    case "D":
-                                        System.out.print(clearScreen);
-                                        System.out.println("Sorting by date from newest to oldest...");
-                                        List<Transaction> sortedByDateReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getDate).reversed());
-                                        displayTransactions(clearScreen, transactionMap, sortedByDateReversed);
-                                        break;
-                                    default:
-                                        System.out.print(clearScreen);
-                                        System.out.println("Invalid input. Please try again.");
-                                }
+                                    System.out.print(clearScreen);
+                                    System.out.println("Sort by oldest to newest (A) or newest to oldest (D)?");
+                                    input = scanner.nextLine().toUpperCase();
+                                    switch(input) {
+                                        case "A":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by date from oldest to newest...");
+                                            List<Transaction> sortedByDate = sortTransactions(transactions, Comparator.comparing(Transaction::getDate));
+                                            displayTransactions(clearScreen, transactionMap, sortedByDate);
+                                            input = scanner.nextLine();
+                                            System.out.println(clearScreen);
+                                            break;
+
+                                        case "D":
+                                            System.out.print(clearScreen);
+                                            System.out.println("Sorting by date from newest to oldest...");
+                                            List<Transaction> sortedByDateReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getDate).reversed());
+                                            displayTransactions(clearScreen, transactionMap, sortedByDateReversed);
+                                            input = scanner.nextLine();
+                                            System.out.println(clearScreen);
+                                            break;
+
+                                        default:
+                                            System.out.print(clearScreen);
+                                            System.out.println("Invalid input. Please try again.");
+                                    }
                                 break;
 
                                 // nez vai sito taisit
@@ -102,25 +107,33 @@ public class App {
 
                                 case "N":
                                     System.out.print(clearScreen);
-                                    System.out.println("Sort by A-Z (AZ) or Z-A (ZA)?");
+                                    System.out.println("Sort by A-Z (A) or Z-A (D)?");
                                     String input6 = scanner.nextLine().toUpperCase();
                                     switch(input6) {
-                                        case "AZ":
+                                        case "A":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by narrative from A-Z...");
-                                            
+                                            List<Transaction> sortedByNarrative = sortTransactions(transactions, Comparator.comparing(Transaction::getNarrative));
+                                            displayTransactions(clearScreen, transactionMap, sortedByNarrative);
+                                            input = scanner.nextLine();
+                                            System.out.print(clearScreen);
                                             break;
-                                        case "ZA":
+                                            
+                                        case "D":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by narrative from Z-A...");
-                                            
+                                            List<Transaction> sortedByNarrativeReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getNarrative).reversed());
+                                            displayTransactions(clearScreen, transactionMap, sortedByNarrativeReversed);
+                                            input = scanner.nextLine();
+                                            System.out.print(clearScreen);
                                             break;
+                                            
                                         default:
                                             System.out.print(clearScreen);
                                             System.out.println("Invalid input. Please try again.");
                                     }                                  
-                                    break;
-
+                                break;
+                                        
                                 case "A":
                                     System.out.print(clearScreen);
                                     System.out.println("Sort by ascending (A) or descending (D)?");
@@ -129,40 +142,57 @@ public class App {
                                         case "A":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by amount from lowest to highest...");
-                                            
+                                            List<Transaction> sortedByAmount = sortTransactions(transactions, Comparator.comparing(Transaction::getAmount));
+                                            displayTransactions(clearScreen, transactionMap, sortedByAmount);
+                                            input = scanner.nextLine();
+                                            System.out.print(clearScreen);
                                             break;
+
                                         case "D":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by amount from highest to lowest...");
-                                            
+                                            List<Transaction> sortedByAmountReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getAmount).reversed());
+                                            displayTransactions(clearScreen, transactionMap, sortedByAmountReversed);
+                                            input = scanner.nextLine();
+                                            System.out.print(clearScreen);
                                             break;
+
                                         default:
                                             System.out.print(clearScreen);
                                             System.out.println("Invalid input. Please try again.");
                                     }
-                                    
-                                    break;
+                                break;
+
                                 case "C":
                                     System.out.print(clearScreen);
-                                    System.out.println("Sort by A-Z (AZ) or Z-A (ZA)?");
+                                    System.out.println("Sort by A-Z (A) or Z-A (D)?");
                                     String input9 = scanner.nextLine().toUpperCase();
                                     switch(input9) {
-                                        case "AZ":
+                                        case "A":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by category from A-Z...");
+                                            List<Transaction> sortedByCategory = sortTransactions(transactions, Comparator.comparing(Transaction::getCategory));
+                                            displayTransactions(clearScreen, transactionMap, sortedByCategory);
+                                            input = scanner.nextLine();
+                                            System.out.print(clearScreen);
                                             break;
 
-                                        case "ZA":
+                                        case "D":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by category from Z-A...");
+                                            List<Transaction> sortedByCategoryReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getCategory).reversed());
+                                            displayTransactions(clearScreen, transactionMap, sortedByCategoryReversed);
+                                            input = scanner.nextLine();
+                                            System.out.print(clearScreen);
                                             break;
 
                                         default:
                                             System.out.print(clearScreen);
                                             System.out.println("Invalid input. Please try again.");
+                                    }
+                                break;
                             }
-                        }
-                        break; 
+                        break;
 
                         case "F":
                             System.out.print(clearScreen);
@@ -210,15 +240,34 @@ public class App {
                             System.out.println("New Transaction:");
                             System.out.println("Enter the transaction type (INCOMING, OUTGOING, PURCHASE): ");
                             String type = scanner.nextLine().toUpperCase();
+                            try {
+                                TransactionType.valueOf(type);
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(clearScreen);
+                                System.out.println("Invalid input. Enter a valid type value.");
+                                break;
+                            }
                             System.out.println("Enter transaction narrative:");
                             String narrative = scanner.nextLine();
                             System.out.println("Enter bank reference:");
                             String bankReference = scanner.nextLine();
+                            System.out.println("Enter transaction amount:");
+                            String sAmount = scanner.nextLine();
+                            double amount = 0.0;
+                            try {
+                                amount = Double.parseDouble(sAmount);
+                            } catch (NumberFormatException e) {
+                                System.out.println(clearScreen);
+                                System.out.println("Invalid input. Please enter a valid amount.");
+                                break;
+                            }
                             System.out.println("Enter transaction category:");
                             String category = scanner.nextLine();
-                            System.out.println("Enter transaction amount:");
-                            double amount = scanner.nextDouble();
-                            scanner.nextLine();
+                            if (type.isEmpty() || narrative.isEmpty() || bankReference.isEmpty() || bankReference.isEmpty() || category.isEmpty()) {
+                                System.out.println(clearScreen);
+                                System.out.println("Invalid input. Make sure to input everything correctly.");
+                                break;
+                            }
                             Transaction newTransaction = new Transaction(LocalDate.now(), TransactionType.valueOf(type), narrative, bankReference, amount, category);
                             transactions.add(newTransaction);
                             TransactionManager.addTransaction(newTransaction);
@@ -397,7 +446,6 @@ public class App {
                     scanner.close();
                     return;
                 
-             
                 default: 
                     System.out.print(clearScreen);
                     System.out.println();

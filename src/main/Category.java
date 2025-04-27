@@ -1,8 +1,5 @@
 package main;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-
 public class Category {
     public enum CategoryType {
         INCOME,

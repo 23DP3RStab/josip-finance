@@ -2,11 +2,8 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.math.BigDecimal;
 import java.nio.file.StandardOpenOption;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import main.Category.CategoryType;
 
