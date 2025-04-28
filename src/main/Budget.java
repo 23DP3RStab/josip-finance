@@ -80,6 +80,7 @@ public class Budget {
         System.out.printf("%7s %20s %20s %20s %20s\n", "Nr.", "Period", "Name", "Limit Amount", "Start Date");
         System.out.println("-".repeat(120));
         int budgetNumber = 1;
+        budgetMap.clear();
         for (Budget budget : budgets) {
             budgetMap.put(budgetNumber, budget.getID());
             System.out.printf("%5s %20s %20s %20s %20s\n",
