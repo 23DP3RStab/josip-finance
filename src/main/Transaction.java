@@ -1,6 +1,13 @@
 package main;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Transaction {
     public enum TransactionType {
@@ -57,6 +64,54 @@ public class Transaction {
 
     public String getCategory() {
         return this.category;
+    }
+
+    public static void displayTransactions(HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
+        System.out.println("Transactions:");
+        System.out.printf("%-7s %-12s %-12s %-50s %-8s %7s %10s\n", "Nr.", "Date", "Type", "Narrative", "Bank Reference", "Amount", "Category");
+        System.out.println("-".repeat(125));
+        int transactionNumber = 1;
+        transactionMap.clear();
+        for (Transaction transaction : transactions) {
+            transactionMap.put(transactionNumber, transaction.getID());
+            System.out.printf("%-5s %-12s %-12s %-55s %-10s %-10.2f %-10s\n",
+                transactionNumber++,
+                transaction.getDate(), transaction.getType(), transaction.getNarrative(), 
+                transaction.getBankReference(), transaction.getAmount(), transaction.getCategory());
+        }
+    }
+    
+    public static void deleteTransactions(Scanner scanner, String clearScreen, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
+        System.out.println();
+        System.out.println("Enter the transaction number to delete: ");
+        int transactionNumberToDelete = scanner.nextInt();
+        scanner.nextLine();
+        if (transactionMap.containsKey(transactionNumberToDelete)) {
+            UUID transactionToDelete = transactionMap.get(transactionNumberToDelete);
+            transactions.removeIf(transaction -> transaction.getID().equals(transactionToDelete));
+            try {
+                TransactionManager.deleteTransactionFromFile(transactionToDelete);
+                System.out.println(clearScreen);
+                System.out.println("Transaction deleted successfully!");
+            } catch (Exception e) {
+                System.out.println("An error occurred while deleting the transaction: " + e.getMessage());
+            }
+        } else {
+            System.out.println(clearScreen);
+            System.out.println("Invalid transaction number. Please try again.");
+        }
+    }
+
+    public static List<Transaction> sortTransactions(List<Transaction> transactions, Comparator<Transaction> comparator) {
+        List<Transaction> sortedTransactions = new ArrayList<>(transactions);
+        sortedTransactions.sort(comparator);
+        return sortedTransactions;
+    }
+
+    public static List<Transaction> filterTransactions(List<Transaction> transactions, Predicate<Transaction> predicate) {
+        return transactions.stream()
+            .filter(predicate)
+            .collect(Collectors.toList());
     }
     
     @Override

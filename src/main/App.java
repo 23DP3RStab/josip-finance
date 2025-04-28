@@ -45,7 +45,7 @@ public class App {
                 // TRANSACTION CASE
                 case "T":
                     System.out.println(clearScreen);
-                    displayTransactions(transactionMap, transactions);
+                    Transaction.displayTransactions(transactionMap, transactions);
                     System.out.println();
                     System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW TRANSACTION \n 'D' - DELETE TRANSACTION");
                     System.out.println("--------------------------");
@@ -65,8 +65,8 @@ public class App {
                                         case "A":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by date from oldest to newest...");
-                                            List<Transaction> sortedByDate = sortTransactions(transactions, Comparator.comparing(Transaction::getDate));
-                                            displayTransactions(transactionMap, sortedByDate);
+                                            List<Transaction> sortedByDate = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getDate));
+                                            Transaction.displayTransactions(transactionMap, sortedByDate);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByDate);
                                             break;
@@ -74,8 +74,8 @@ public class App {
                                         case "D":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by date from newest to oldest...");
-                                            List<Transaction> sortedByDateReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getDate).reversed());
-                                            displayTransactions(transactionMap, sortedByDateReversed);
+                                            List<Transaction> sortedByDateReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getDate).reversed());
+                                            Transaction.displayTransactions(transactionMap, sortedByDateReversed);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByDateReversed);
                                             break;
@@ -94,8 +94,8 @@ public class App {
                                         case "A":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by type from A-Z...");
-                                            List<Transaction> sortedByType = sortTransactions(transactions, Comparator.comparing(Transaction::getType));
-                                            displayTransactions(transactionMap, sortedByType);
+                                            List<Transaction> sortedByType = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getType));
+                                            Transaction.displayTransactions(transactionMap, sortedByType);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByType);
                                             break;
@@ -103,8 +103,8 @@ public class App {
                                         case "D":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by type from Z-A...");
-                                            List<Transaction> sortedByTypeReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getType).reversed());
-                                            displayTransactions(transactionMap, sortedByTypeReversed);
+                                            List<Transaction> sortedByTypeReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getType).reversed());
+                                            Transaction.displayTransactions(transactionMap, sortedByTypeReversed);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByTypeReversed);
                                             break;
@@ -123,8 +123,8 @@ public class App {
                                         case "A":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by narrative from A-Z...");
-                                            List<Transaction> sortedByNarrative = sortTransactions(transactions, Comparator.comparing(Transaction::getNarrative));
-                                            displayTransactions(transactionMap, sortedByNarrative);
+                                            List<Transaction> sortedByNarrative = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getNarrative));
+                                            Transaction.displayTransactions(transactionMap, sortedByNarrative);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByNarrative);
                                             break;
@@ -132,8 +132,8 @@ public class App {
                                         case "D":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by narrative from Z-A...");
-                                            List<Transaction> sortedByNarrativeReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getNarrative).reversed());
-                                            displayTransactions(transactionMap, sortedByNarrativeReversed);
+                                            List<Transaction> sortedByNarrativeReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getNarrative).reversed());
+                                            Transaction.displayTransactions(transactionMap, sortedByNarrativeReversed);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByNarrativeReversed);
                                             break;
@@ -152,8 +152,8 @@ public class App {
                                         case "A":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by amount from lowest to highest...");
-                                            List<Transaction> sortedByAmount = sortTransactions(transactions, Comparator.comparing(Transaction::getAmount));
-                                            displayTransactions(transactionMap, sortedByAmount);
+                                            List<Transaction> sortedByAmount = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getAmount));
+                                            Transaction.displayTransactions(transactionMap, sortedByAmount);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByAmount);
                                             break;
@@ -161,8 +161,8 @@ public class App {
                                         case "D":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by amount from highest to lowest...");
-                                            List<Transaction> sortedByAmountReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getAmount).reversed());
-                                            displayTransactions(transactionMap, sortedByAmountReversed);
+                                            List<Transaction> sortedByAmountReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getAmount).reversed());
+                                            Transaction.displayTransactions(transactionMap, sortedByAmountReversed);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByAmountReversed);
                                             break;
@@ -181,8 +181,8 @@ public class App {
                                         case "A":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by category from A-Z...");
-                                            List<Transaction> sortedByCategory = sortTransactions(transactions, Comparator.comparing(Transaction::getCategory));
-                                            displayTransactions(transactionMap, sortedByCategory);
+                                            List<Transaction> sortedByCategory = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getCategory));
+                                            Transaction.displayTransactions(transactionMap, sortedByCategory);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByCategory);
                                             break;
@@ -190,8 +190,8 @@ public class App {
                                         case "D":
                                             System.out.print(clearScreen);
                                             System.out.println("Sorting by category from Z-A...");
-                                            List<Transaction> sortedByCategoryReversed = sortTransactions(transactions, Comparator.comparing(Transaction::getCategory).reversed());
-                                            displayTransactions(transactionMap, sortedByCategoryReversed);
+                                            List<Transaction> sortedByCategoryReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getCategory).reversed());
+                                            Transaction.displayTransactions(transactionMap, sortedByCategoryReversed);
                                             input = scanner.nextLine();
                                             // deleteTransactions(scanner, clearScreen, transactionMap, sortedByCategoryReversed);
                                             break;
@@ -213,10 +213,10 @@ public class App {
                                     System.out.print(clearScreen);
                                     System.out.println("Enter date to filter (YYYY-MM-DD):");
                                     LocalDate filterDate = LocalDate.parse(scanner.nextLine());
-                                    List<Transaction> filteredByDate = filterTransactions(transactions, transaction -> transaction.getDate().equals(filterDate));
+                                    List<Transaction> filteredByDate = Transaction.filterTransactions(transactions, transaction -> transaction.getDate().equals(filterDate));
                                     System.out.println(clearScreen);
                                     System.out.println("Filtering by date - [ " + filterDate.toString() + " ]");
-                                    displayTransactions(transactionMap, filteredByDate);
+                                    Transaction.displayTransactions(transactionMap, filteredByDate);
                                     input = scanner.nextLine();
                                     System.out.println(clearScreen);
                                     break;
@@ -225,10 +225,10 @@ public class App {
                                     System.out.print(clearScreen);
                                     System.out.println("Enter type to filter (INCOMING, OUTGOING, PURCHASE):");
                                     TransactionType filterType = TransactionType.valueOf(scanner.nextLine().toUpperCase());
-                                    List<Transaction> filteredByType = filterTransactions(transactions, transaction -> transaction.getType() == filterType);
+                                    List<Transaction> filteredByType = Transaction.filterTransactions(transactions, transaction -> transaction.getType() == filterType);
                                     System.out.println(clearScreen);
                                     System.out.println("Filtering by type - [ " + filterType.toString() + " ]");
-                                    displayTransactions(transactionMap, filteredByType);
+                                    Transaction.displayTransactions(transactionMap, filteredByType);
                                     input = scanner.nextLine();
                                     System.out.println(clearScreen);
                                     break;
@@ -237,10 +237,10 @@ public class App {
                                     System.out.print(clearScreen);
                                     System.out.println("Enter narrative to filter:");
                                     String filterNarrative = scanner.nextLine().toLowerCase();
-                                    List<Transaction> filteredByNarrative = filterTransactions(transactions, transaction -> transaction.getNarrative().toLowerCase().contains(filterNarrative));
+                                    List<Transaction> filteredByNarrative = Transaction.filterTransactions(transactions, transaction -> transaction.getNarrative().toLowerCase().contains(filterNarrative));
                                     System.out.println(clearScreen);
                                     System.out.println("Filtering by narrative - [ " + filterNarrative + " ]");
-                                    displayTransactions(transactionMap, filteredByNarrative);
+                                    Transaction.displayTransactions(transactionMap, filteredByNarrative);
                                     input = scanner.nextLine();
                                     System.out.println(clearScreen);
                                     break;
@@ -249,10 +249,10 @@ public class App {
                                     System.out.print(clearScreen);
                                     System.out.println("Enter bank reference to filter:");
                                     String filterBankReference = scanner.nextLine().toLowerCase();
-                                    List<Transaction> filteredByBankReference = filterTransactions(transactions, transaction -> transaction.getBankReference().toLowerCase().contains(filterBankReference));
+                                    List<Transaction> filteredByBankReference = Transaction.filterTransactions(transactions, transaction -> transaction.getBankReference().toLowerCase().contains(filterBankReference));
                                     System.out.println(clearScreen);
                                     System.out.println("Filtering by bank reference - [ " + filterBankReference + " ]");
-                                    displayTransactions(transactionMap, filteredByBankReference);
+                                    Transaction.displayTransactions(transactionMap, filteredByBankReference);
                                     input = scanner.nextLine();
                                     System.out.println(clearScreen);
                                     break;
@@ -270,10 +270,10 @@ public class App {
                                         break;
                                     }
                                     final double finalFilterAmount = filterAmount;
-                                    List<Transaction> filteredByAmount = filterTransactions(transactions, transaction -> transaction.getAmount() == finalFilterAmount);
+                                    List<Transaction> filteredByAmount = Transaction.filterTransactions(transactions, transaction -> transaction.getAmount() == finalFilterAmount);
                                     System.out.println(clearScreen);
                                     System.out.println("Filtering by amount - [ " + sFilterAmount + " ]");
-                                    displayTransactions(transactionMap, filteredByAmount);
+                                    Transaction.displayTransactions(transactionMap, filteredByAmount);
                                     input = scanner.nextLine();
                                     System.out.println(clearScreen);
                                     break;
@@ -282,10 +282,10 @@ public class App {
                                     System.out.print(clearScreen);
                                     System.out.println("Enter category to filter:");
                                     String filterCategory = scanner.nextLine();
-                                    List<Transaction> filteredByCategory = filterTransactions(transactions, transaction -> transaction.getCategory().equalsIgnoreCase(filterCategory));
+                                    List<Transaction> filteredByCategory = Transaction.filterTransactions(transactions, transaction -> transaction.getCategory().equalsIgnoreCase(filterCategory));
                                     System.out.println(clearScreen);
                                     System.out.println("Filtering by category - [ " + filterCategory + " ]");
-                                    displayTransactions(transactionMap, filteredByCategory);
+                                    Transaction.displayTransactions(transactionMap, filteredByCategory);
                                     input = scanner.nextLine();
                                     System.out.println(clearScreen);
                                     break;
@@ -337,7 +337,7 @@ public class App {
                             break;
                             
                         case "D":
-                            deleteTransactions(scanner, clearScreen, transactionMap, transactions);
+                            Transaction.deleteTransactions(scanner, clearScreen, transactionMap, transactions);
                             break;
 
                         case "Y":
@@ -361,7 +361,7 @@ public class App {
                 // BUDGET CASE
                 case "B":
                     System.out.print(clearScreen);
-                    displayBudgets(budgetMap, budgets);
+                    Budget.displayBudgets(budgetMap, budgets);
                     System.out.println();
                     System.out.println("Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW BUDGET \n 'D' - DELETE BUDGET");
                     System.out.println("--------------------------");
@@ -381,8 +381,8 @@ public class App {
                                     case "A":
                                         System.out.print(clearScreen);
                                         System.out.println("Sorting by period from shortest to longest...");
-                                        List<Budget> sortedByPeriod = sortBudgets(budgets, Comparator.comparing(Budget::getPeriod));
-                                        displayBudgets(budgetMap, sortedByPeriod);
+                                        List<Budget> sortedByPeriod = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getPeriod));
+                                        Budget.displayBudgets(budgetMap, sortedByPeriod);
                                         input = scanner.nextLine();
                                         // deleteBudgets(scanner, clearScreen, budgetMap, sortedByPeriod);
                                         break;
@@ -390,8 +390,8 @@ public class App {
                                     case "D":
                                         System.out.print(clearScreen);
                                         System.out.println("Sorting by period from longest to shortest...");
-                                        List<Budget> sortedByPeriodReversed = sortBudgets(budgets, Comparator.comparing(Budget::getPeriod).reversed());
-                                        displayBudgets(budgetMap, sortedByPeriodReversed);
+                                        List<Budget> sortedByPeriodReversed = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getPeriod).reversed());
+                                        Budget.displayBudgets(budgetMap, sortedByPeriodReversed);
                                         input = scanner.nextLine();
                                         // deleteBudgets(scanner, clearScreen, budgetMap, sortedByPeriodReversed);
                                         break;
@@ -623,90 +623,5 @@ public class App {
                     break;
             }
         }
-    }
-    
-    public static void displayTransactions(HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
-        System.out.println("Transactions:");
-        System.out.printf("%-7s %-12s %-12s %-50s %-8s %7s %10s\n", "Nr.", "Date", "Type", "Narrative", "Bank Reference", "Amount", "Category");
-        System.out.println("-".repeat(125));
-        int transactionNumber = 1;
-        transactionMap.clear();
-        for (Transaction transaction : transactions) {
-            transactionMap.put(transactionNumber, transaction.getID());
-            System.out.printf("%-5s %-12s %-12s %-55s %-10s %-10.2f %-10s\n",
-                transactionNumber++,
-                transaction.getDate(), transaction.getType(), transaction.getNarrative(), 
-                transaction.getBankReference(), transaction.getAmount(), transaction.getCategory());
-        }
-    }
-    
-    public static void deleteTransactions(Scanner scanner, String clearScreen, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
-        System.out.println();
-        System.out.println("Enter the transaction number to delete: ");
-        int transactionNumberToDelete = scanner.nextInt();
-        scanner.nextLine();
-        if (transactionMap.containsKey(transactionNumberToDelete)) {
-            UUID transactionToDelete = transactionMap.get(transactionNumberToDelete);
-            transactions.removeIf(transaction -> transaction.getID().equals(transactionToDelete));
-            try {
-                TransactionManager.deleteTransactionFromFile(transactionToDelete);
-                System.out.println(clearScreen);
-                System.out.println("Transaction deleted successfully!");
-            } catch (Exception e) {
-                System.out.println("An error occurred while deleting the transaction: " + e.getMessage());
-            }
-        } else {
-            System.out.println(clearScreen);
-            System.out.println("Invalid transaction number. Please try again.");
-        }
-    }
-
-    public static List<Transaction> sortTransactions(List<Transaction> transactions, Comparator<Transaction> comparator) {
-        List<Transaction> sortedTransactions = new ArrayList<>(transactions);
-        sortedTransactions.sort(comparator);
-        return sortedTransactions;
-    }
-
-    public static List<Transaction> filterTransactions(List<Transaction> transactions, Predicate<Transaction> predicate) {
-        return transactions.stream()
-            .filter(predicate)
-            .collect(Collectors.toList());
-    }
-
-    public static void displayBudgets(HashMap<Integer, UUID> budgetMap, List<Budget> budgets) {
-        System.out.println("Budgets:");
-        System.out.printf("%7s %20s %20s %20s %20s\n", "Nr.", "Period", "Name", "Limit Amount", "Start Date");
-        System.out.println("-".repeat(120));
-        int budgetNumber = 1;
-        for (Budget budget : budgets) {
-            budgetMap.put(budgetNumber, budget.getID());
-            System.out.printf("%5s %20s %20s %20s %20s\n",
-                budgetNumber++, budget.getPeriod(), budget.getName(),
-                budget.getLimitAmount(), budget.getStartDate());
-        }
-    }
-
-    public static List<Budget> sortBudgets(List<Budget> budgets, Comparator<Budget> comparator) {
-        List<Budget> sortedBudgets = new ArrayList<>(budgets);
-        sortedBudgets.sort(comparator);
-        return sortedBudgets;
-    }
-
-    public static List<Budget> filterBudgets(List<Budget> budgets, Predicate<Budget> predicate) {
-        return budgets.stream()
-            .filter(predicate)
-            .collect(Collectors.toList());
-    }
-
-    public static List<Category> sortCategories(List<Category> categories, Comparator<Category> comparator) {
-        List<Category> sortedCategories = new ArrayList<>(categories);
-        sortedCategories.sort(comparator);
-        return sortedCategories;
-    }
-
-    public static List<Category> filterCategories(List<Category> categories, Predicate<Category> predicate) {
-        return categories.stream()
-            .filter(predicate)
-            .collect(Collectors.toList());
     }
 }

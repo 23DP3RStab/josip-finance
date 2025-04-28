@@ -1,5 +1,11 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 public class Category {
     public enum CategoryType {
         INCOME,
@@ -32,6 +38,18 @@ public class Category {
     // public double getSpendingLimit() {
     //     return this.spendingLimit;
     // }
+
+    public static List<Category> sortCategories(List<Category> categories, Comparator<Category> comparator) {
+        List<Category> sortedCategories = new ArrayList<>(categories);
+        sortedCategories.sort(comparator);
+        return sortedCategories;
+    }
+
+    public static List<Category> filterCategories(List<Category> categories, Predicate<Category> predicate) {
+        return categories.stream()
+            .filter(predicate)
+            .collect(Collectors.toList());
+    }
 
     @Override
     public String toString() {
