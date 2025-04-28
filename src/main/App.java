@@ -1,6 +1,5 @@
 package main;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -8,9 +7,7 @@ import main.Budget.BudgetPeriod;
 import main.Category.CategoryType;
 import main.Transaction.TransactionType;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import java.util.List;
-import java.util.function.Predicate;
 
 
 // VSCode: F1 -> Java: Clean Workspace
@@ -64,7 +61,7 @@ public class App {
                                     switch(input) {
                                         case "A":
                                             System.out.print(clearScreen);
-                                            System.out.println("Sorting by date from oldest to newest..."); asdasdasdasdasdasdasdasdasdasdasd
+                                            System.out.println("Sorting by date from oldest to newest...");
                                             List<Transaction> sortedByDate = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getDate));
                                             Transaction.displayTransactions(transactionMap, sortedByDate);
                                             input = scanner.nextLine();
