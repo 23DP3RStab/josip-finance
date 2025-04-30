@@ -10,6 +10,11 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Transaction {
+    final static String Violet = "\u001B[35;1m";
+    final static String Reset = "\u001B[0m";
+    final static String Red = "\u001B[31;1m";
+    final static String Green = "\u001B[32;1m";
+
     public enum TransactionType {
         INCOMING,
         OUTGOING,
@@ -83,7 +88,7 @@ public class Transaction {
     
     public static void deleteTransactions(Scanner scanner, String clearScreen, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
         System.out.println();
-        System.out.println("Enter the transaction number to delete: ");
+        System.out.println(Violet+"Enter the transaction number to delete: "+Reset);
         int transactionNumberToDelete = scanner.nextInt();
         scanner.nextLine();
         if (transactionMap.containsKey(transactionNumberToDelete)) {
@@ -92,13 +97,13 @@ public class Transaction {
             try {
                 TransactionManager.deleteTransactionFromFile(transactionToDelete);
                 System.out.println(clearScreen);
-                System.out.println("Transaction deleted successfully!");
+                System.out.println(Green+"Transaction deleted successfully!"+Reset);
             } catch (Exception e) {
-                System.out.println("An error occurred while deleting the transaction: " + e.getMessage());
+                System.out.println(Red+"An error occurred while deleting the transaction: " + e.getMessage()+Reset);
             }
         } else {
             System.out.println(clearScreen);
-            System.out.println("Invalid transaction number. Please try again.");
+            System.out.println(Red+"Invalid transaction number. Please try again."+Reset);
         }
     }
 
