@@ -76,7 +76,7 @@ public class Budget {
     }
 
     public static void displayBudgets(HashMap<Integer, UUID> budgetMap, List<Budget> budgets) {
-        System.out.println("Budgets:");
+        System.out.println(App.VIOLET + "Budgets:" + App.RESET);
         System.out.printf("%7s %20s %20s %20s %20s\n", "Nr.", "Period", "Name", "Limit Amount", "Start Date");
         System.out.println("-".repeat(120));
         int budgetNumber = 1;

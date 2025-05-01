@@ -10,11 +10,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Transaction {
-    final static String Violet = "\u001B[35;1m";
-    final static String Reset = "\u001B[0m";
-    final static String Red = "\u001B[31;1m";
-    final static String Green = "\u001B[32;1m";
-
     public enum TransactionType {
         INCOMING,
         OUTGOING,
@@ -72,7 +67,7 @@ public class Transaction {
     }
 
     public static void displayTransactions(HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
-        System.out.println("Transactions:");
+        System.out.println(App.VIOLET + "Transactions:" + App.RESET);
         System.out.printf("%-7s %-12s %-12s %-50s %-8s %7s %10s\n", "Nr.", "Date", "Type", "Narrative", "Bank Reference", "Amount", "Category");
         System.out.println("-".repeat(125));
         int transactionNumber = 1;
@@ -86,9 +81,9 @@ public class Transaction {
         }
     }
     
-    public static void deleteTransactions(Scanner scanner, String clearScreen, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
+    public static void deleteTransactions(Scanner scanner, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
         System.out.println();
-        System.out.println(Violet+"Enter the transaction number to delete: "+Reset);
+        System.out.println(App.VIOLET + "Enter the transaction number to delete: " + App.RESET);
         int transactionNumberToDelete = scanner.nextInt();
         scanner.nextLine();
         if (transactionMap.containsKey(transactionNumberToDelete)) {
@@ -96,14 +91,14 @@ public class Transaction {
             transactions.removeIf(transaction -> transaction.getID().equals(transactionToDelete));
             try {
                 TransactionManager.deleteTransactionFromFile(transactionToDelete);
-                System.out.println(clearScreen);
-                System.out.println(Green+"Transaction deleted successfully!"+Reset);
+                System.out.println(App.CLEAR_SCREEN);
+                System.out.println(App.GREEN + "Transaction deleted successfully!" + App.RESET);
             } catch (Exception e) {
-                System.out.println(Red+"An error occurred while deleting the transaction: " + e.getMessage()+Reset);
+                System.out.println(App.RED + "An error occurred while deleting the transaction: " + e.getMessage() + App.RESET);
             }
         } else {
-            System.out.println(clearScreen);
-            System.out.println(Red+"Invalid transaction number. Please try again."+Reset);
+            System.out.println(App.CLEAR_SCREEN);
+            System.out.println(App.RED + "Invalid transaction number. Please try again." + App.RESET);
         }
     }
 
