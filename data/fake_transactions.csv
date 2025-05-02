@@ -23,3 +23,4 @@ ID,Date,Type,Narrative,Bank Reference,Amount,Category
 550e8400-e29b-41d4-a716-446655440005,2025-01-08,outgoing,Phone bill LV57PARX001122334455 Bite Telecom,TXN1006,-25.00,Utilities
 550e8400-e29b-41d4-a716-446655440020,2025-01-23,purchase,Online gaming purchase LV31HABA001122334455 Steam,TXN1021,-19.99,Entertainment
 550e8400-e29b-41d4-a716-446655440021,2025-01-24,incoming,Tax refund LV59PARX554433221100 Jane White,TXN1022,250.00,Miscellaneous Income
+8ed555a2-96f2-4917-8257-4d0df835aa9c,2025-05-02,INCOMING,dasd,asdsa,214.0,dsa
