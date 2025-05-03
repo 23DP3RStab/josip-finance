@@ -4,7 +4,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 import main.Budget.BudgetPeriod;
-import main.Category.CategoryType;
 import main.Transaction.TransactionType;
 import java.util.UUID;
 import java.util.List;
@@ -35,7 +34,6 @@ public class App {
         
         List<Transaction> transactions = TransactionManager.getTransactionList();
         List<Budget> budgets = BudgetManager.getBudgetList();
-        List<Category> categories = CategoryManager.getCategoryList();
         HashMap<Integer, UUID> transactionMap = new HashMap<>();
         HashMap<Integer, UUID> budgetMap = new HashMap<>();
         
@@ -43,7 +41,7 @@ public class App {
             System.out.println();
             System.out.println(BANNER);
             System.out.println(BANNER_LINES);
-            System.out.println(VIOLET + "Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'S' - VIEW STATISTICS \n 'X' - EXIT" +  RESET);
+            System.out.println(VIOLET + "Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'S' - VIEW STATISTICS \n 'X' - EXIT" +  RESET);
             String input = scanner.nextLine().toUpperCase();
             switch(input) {
                 // TRANSACTION CASE
@@ -563,73 +561,6 @@ public class App {
                             break;
                     }
                     break;
-                // CATEGORY CASE
-                case "C":
-                    System.out.print(CLEAR_SCREEN);
-                    Category.displayCategories(categories);
-                    System.out.println();
-                    System.out.println(VIOLET + "Choose your option: \n 'S' - SORT \n 'N' - NEW CATEGORY \n 'D' - DELETE CATEGORY"+ RESET);
-                    System.out.println(VIOLET + "--------------------------"+ RESET);
-                    System.out.println(VIOLET + " 'Y' - RETURN TO MAIN \n 'X' - EXIT"+ RESET);
-                    String input4 = scanner.nextLine().toUpperCase();
-                    switch(input4) {
-                        case "N":
-                            System.out.print(CLEAR_SCREEN);
-                            System.out.println(VIOLET + "New Category:"+ RESET);
-                            System.out.println(VIOLET + "Enter the category type (INCOME, EXPENSE): "+ RESET);
-                            String categorytype = scanner.nextLine().toUpperCase();
-                            try {
-                                CategoryType.valueOf(categorytype);
-                            } catch (IllegalArgumentException e) {
-                                System.out.println(CLEAR_SCREEN);
-                                System.out.println(RED+"Invalid input. Enter a valid type value."+ RESET);
-                                break;
-                            }
-                            System.out.println(VIOLET + "Enter category name:"+ RESET);
-                            String categoryname = scanner.nextLine();
-                            Category newCategory = new Category(categoryname, CategoryType.valueOf(categorytype));
-                            categories.add(newCategory);
-                            CategoryManager.addCategory(newCategory);
-                            System.out.print(CLEAR_SCREEN);
-                            System.out.println(GREEN+"Category added successfully!"+ RESET);
-                            break;
-
-                        case "D":
-                            System.out.println();
-                            System.out.println(VIOLET + "Enter the category name to delete: "+ RESET);
-                            String categoryNameToDelete = scanner.nextLine();
-
-                            boolean categoryExists = categories.stream().anyMatch(category -> category.getName().equalsIgnoreCase(categoryNameToDelete));
-
-                            if (categoryExists) {
-                                categories.removeIf(category -> category.getName().equals(categoryNameToDelete));
-                                CategoryManager.deleteCategoryFromFile(categoryNameToDelete);
-                                System.out.println(CLEAR_SCREEN);
-                                System.out.println(GREEN+"Category deleted successfully!"+ RESET);
-                            } else {
-                                System.out.println(CLEAR_SCREEN);
-                                System.out.println(RED+"Invalid category number. Please try again."+ RESET);
-                            }
-                            break;
-
-                        case "Y":
-                            System.out.print(CLEAR_SCREEN);
-                            System.out.println(VIOLET + "Returning to main menu..."+ RESET);
-                            System.out.println();
-                            break;
-
-                        case "X":
-                            System.out.print(CLEAR_SCREEN);
-                            System.out.println(VIOLET + "Exiting..."+ RESET);
-                            scanner.close();
-                            return;
-                            
-                        default:
-                            System.out.print(CLEAR_SCREEN);
-                            System.out.println(RED+"Invalid input. Please try again."+ RESET);
-                            break;
-                    } 
-                    break;
 
                 case "S":
                     System.out.println(CLEAR_SCREEN);
@@ -696,16 +627,6 @@ public class App {
 
         if (input.equalsIgnoreCase("yes")) {
             Budget.deleteBudget(scanner, budgetMap, budgets);
-        }
-        menuOptions(scanner);
-    }
-
-    public static void deleteCategoryOption(Scanner scanner, List<Category> categories) {
-        System.out.println(VIOLET + "Would you like to delete a category? [ YES ] [ NO ]" + RESET);
-        String input = scanner.nextLine();
-
-        if (input.equalsIgnoreCase("yes")) {
-            Category.deleteCategory(scanner, categories);
         }
         menuOptions(scanner);
     }
