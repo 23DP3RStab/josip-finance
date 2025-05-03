@@ -91,8 +91,8 @@ public class App {
                                 case "T":
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Sort by A-Z (A) or Z-A (D)?" + RESET);
-                                    String input5 = scanner.nextLine().toUpperCase();
-                                    switch(input5) {
+                                    input = scanner.nextLine().toUpperCase();
+                                    switch(input) {
                                         case "A":
                                             System.out.print(CLEAR_SCREEN);
                                             System.out.println(VIOLET + "Sorting by type from A-Z..." + RESET);
@@ -122,8 +122,8 @@ public class App {
                                 case "N":
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Sort by A-Z (A) or Z-A (D)?" + RESET);
-                                    String input6 = scanner.nextLine().toUpperCase();
-                                    switch(input6) {
+                                    input = scanner.nextLine().toUpperCase();
+                                    switch(input) {
                                         case "A":
                                             System.out.print(CLEAR_SCREEN);
                                             System.out.println(VIOLET + "Sorting by narrative from A-Z..." + RESET);
@@ -153,8 +153,8 @@ public class App {
                                 case "A":
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Sort by ascending (A) or descending (D)?" + RESET);
-                                    String input8 = scanner.nextLine().toUpperCase();
-                                    switch(input8) {
+                                    input = scanner.nextLine().toUpperCase();
+                                    switch(input) {
                                         case "A":
                                             System.out.print(CLEAR_SCREEN);
                                             System.out.println(VIOLET + "Sorting by amount from lowest to highest..." + RESET);
@@ -184,8 +184,8 @@ public class App {
                                 case "C":
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Sort by A-Z (A) or Z-A (D)?"+ RESET);
-                                    String input9 = scanner.nextLine().toUpperCase();
-                                    switch(input9) {
+                                    input = scanner.nextLine().toUpperCase();
+                                    switch(input) {
                                         case "A":
                                             System.out.print(CLEAR_SCREEN);
                                             System.out.println(VIOLET + "Sorting by category from A-Z..."+ RESET);
@@ -382,8 +382,8 @@ public class App {
                     System.out.println(VIOLET + "Choose your option: \n 'S' - SORT \n 'F' - FILTER  \n 'N' - NEW BUDGET \n 'D' - DELETE BUDGET"+ RESET);
                     System.out.println(VIOLET + "--------------------------"+ RESET);
                     System.out.println(VIOLET + " 'Y' - RETURN TO MAIN \n 'X' - EXIT"+ RESET);
-                    String input10 = scanner.nextLine().toUpperCase();
-                    switch(input10) {
+                    input = scanner.nextLine().toUpperCase();
+                    switch(input) {
                         case "S":
                         System.out.print(CLEAR_SCREEN);
                         System.err.println(VIOLET + "Sort by: \n 'P' - PERIOD \n 'N' - NAME \n 'L' - LIMIT AMOUNT \n 'S' - START DATE"+ RESET);
@@ -423,8 +423,8 @@ public class App {
                             case "N":
                                 System.out.print(CLEAR_SCREEN);
                                 System.out.println(VIOLET + "Sort by A-Z (A) or Z-A (D)?"+ RESET);
-                                String input5 = scanner.nextLine().toUpperCase();
-                                switch(input5) {
+                                input = scanner.nextLine().toUpperCase();
+                                switch(input) {
                                     case "A":
                                         System.out.print(CLEAR_SCREEN);
                                         System.out.println(VIOLET + "Sorting by name from A-Z..."+ RESET);
@@ -454,8 +454,8 @@ public class App {
                             case "L":
                                 System.out.print(CLEAR_SCREEN);
                                 System.out.println(VIOLET + "Sort by ascending (A) or descending (D)?"+ RESET);
-                                String input6 = scanner.nextLine().toUpperCase();
-                                switch(input6) {
+                                input = scanner.nextLine().toUpperCase();
+                                switch(input) {
                                     case "A":
                                         System.out.print(CLEAR_SCREEN);
                                         System.out.println(VIOLET + "Sorting by limit amount from lowest to highest..."+ RESET);
@@ -485,8 +485,8 @@ public class App {
                             case "S":
                                 System.out.print(CLEAR_SCREEN);
                                 System.out.println(VIOLET + "Sort by oldest to newest (A) or newest to oldest (D)?"+ RESET);
-                                String input8 = scanner.nextLine().toUpperCase();
-                                switch(input8) {
+                                input = scanner.nextLine().toUpperCase();
+                                switch(input) {
                                     case "A":
                                         System.out.print(CLEAR_SCREEN);
                                         System.out.println(VIOLET + "Sorting by date from oldest to newest..."+ RESET);
