@@ -43,7 +43,7 @@ public class App {
             System.out.println();
             System.out.println(BANNER);
             System.out.println(BANNER_LINES);
-            System.out.println(VIOLET + "Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'X' - EXIT" +  RESET);
+            System.out.println(VIOLET + "Choose your option:  \n 'T' - VIEW YOUR TRANSACTIONS \n 'B' - VIEW YOUR BUDGET \n 'C' - VIEW YOUR CATEGORY \n 'S' - VIEW STATISTICS \n 'X' - EXIT" +  RESET);
             String input = scanner.nextLine().toUpperCase();
             switch(input) {
                 // TRANSACTION CASE
@@ -71,9 +71,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by date from oldest to newest..." + RESET);
                                             List<Transaction> sortedByDate = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getDate));
                                             Transaction.displayTransactions(transactionMap, sortedByDate);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByDate);
-                                            handleSortingAndFiltering(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByDate);
                                             break;
 
                                         case "D":
@@ -83,7 +81,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByDateReversed);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByDateReversed);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
 
                                         default:
@@ -104,7 +102,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByType);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByType);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
 
                                         case "D":
@@ -114,7 +112,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByTypeReversed);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByTypeReversed);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
 
                                         default:
@@ -135,7 +133,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByNarrative);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByNarrative);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
                                             
                                         case "D":
@@ -145,7 +143,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByNarrativeReversed);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByNarrativeReversed);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
                                             
                                         default:
@@ -166,7 +164,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByAmount);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByAmount);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
 
                                         case "D":
@@ -176,7 +174,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByAmountReversed);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByAmountReversed);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
 
                                         default:
@@ -197,7 +195,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByCategory);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByCategory);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
 
                                         case "D":
@@ -207,7 +205,7 @@ public class App {
                                             Transaction.displayTransactions(transactionMap, sortedByCategoryReversed);
                                             // input = scanner.nextLine();
                                             // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByCategoryReversed);
-                                            handleSortingAndFiltering(scanner);
+                                            menuOptions(scanner);
                                             break;
 
                                         default:
@@ -232,7 +230,7 @@ public class App {
                                     System.out.println(VIOLET + "Filtering by date - [ " + filterDate.toString() + " ]"+ RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByDate);
                                     // input = scanner.nextLine();
-                                    handleSortingAndFiltering(scanner);
+                                    menuOptions(scanner);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -245,7 +243,7 @@ public class App {
                                     System.out.println(VIOLET + "Filtering by type - [ " + filterType.toString() + " ]"+ RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByType);
                                     // input = scanner.nextLine();
-                                    handleSortingAndFiltering(scanner);
+                                    menuOptions(scanner);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -258,7 +256,7 @@ public class App {
                                     System.out.println(VIOLET + "Filtering by narrative - [ " + filterNarrative + " ]"+RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByNarrative);
                                     // input = scanner.nextLine();
-                                    handleSortingAndFiltering(scanner);
+                                    menuOptions(scanner);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -271,7 +269,7 @@ public class App {
                                     System.out.println(VIOLET + "Filtering by bank reference - [ " + filterBankReference + " ]"+RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByBankReference);
                                     // input = scanner.nextLine();
-                                    handleSortingAndFiltering(scanner);
+                                    menuOptions(scanner);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -293,7 +291,7 @@ public class App {
                                     System.out.println(VIOLET + "Filtering by amount - [ " + sFilterAmount + " ]" + RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByAmount);
                                     // input = scanner.nextLine();
-                                    handleSortingAndFiltering(scanner);
+                                    menuOptions(scanner);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -306,7 +304,7 @@ public class App {
                                     System.out.println(VIOLET + "Filtering by category - [ " + filterCategory + " ]"+RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByCategory);
                                     // input = scanner.nextLine();
-                                    handleSortingAndFiltering(scanner);
+                                    menuOptions(scanner);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -357,7 +355,7 @@ public class App {
                             break;
                             
                         case "D":
-                            Transaction.deleteTransactions(scanner, transactionMap, transactions);
+                            Transaction.deleteTransaction(scanner, transactionMap, transactions);
                             break;
 
                         case "Y":
@@ -405,7 +403,7 @@ public class App {
                                         Budget.displayBudgets(budgetMap, sortedByPeriod);
                                         // input = scanner.nextLine();
                                         // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByPeriod);
-                                        handleSortingAndFiltering(scanner);
+                                        menuOptions(scanner);
                                         break;
 
                                     case "D":
@@ -415,7 +413,7 @@ public class App {
                                         Budget.displayBudgets(budgetMap, sortedByPeriodReversed);
                                         // input = scanner.nextLine();
                                         // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByPeriodReversed);
-                                        handleSortingAndFiltering(scanner);
+                                        menuOptions(scanner);
                                         break;
 
                                     default:
@@ -436,7 +434,7 @@ public class App {
                                         Budget.displayBudgets(budgetMap, sortedByName);
                                         // input = scanner.nextLine();
                                         // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByName);
-                                        handleSortingAndFiltering(scanner);
+                                        menuOptions(scanner);
                                         break;
 
                                     case "D":
@@ -446,7 +444,7 @@ public class App {
                                         Budget.displayBudgets(budgetMap, sortedByNameReversed);
                                         // input = scanner.nextLine();
                                         // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByNameReversed);
-                                        handleSortingAndFiltering(scanner);
+                                        menuOptions(scanner);
                                         break;
 
                                     default:
@@ -467,7 +465,7 @@ public class App {
                                         Budget.displayBudgets(budgetMap, sortedByLimitAmount);
                                         // input = scanner.nextLine();
                                         // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByLimitAmount);
-                                        handleSortingAndFiltering(scanner);
+                                        menuOptions(scanner);
                                         break;
                                         
                                     case "D":
@@ -477,7 +475,7 @@ public class App {
                                         Budget.displayBudgets(budgetMap, sortedByLimitAmountReversed);
                                         // input = scanner.nextLine();
                                         // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByLimitAmountReversed);
-                                        handleSortingAndFiltering(scanner);
+                                        menuOptions(scanner);
                                         break;
                                         
                                     default:
@@ -498,7 +496,7 @@ public class App {
                                         Budget.displayBudgets(budgetMap, sortedByStartDate);
                                         // input = scanner.nextLine();
                                         // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByStartDate);
-                                        handleSortingAndFiltering(scanner);
+                                        menuOptions(scanner);
                                         break;
 
                                     case "D":
@@ -508,7 +506,7 @@ public class App {
                                         Budget.displayBudgets(budgetMap, sortedByStartDateReversed);
                                         // input = scanner.nextLine();
                                         // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByStartDateReversed);
-                                        handleSortingAndFiltering(scanner);
+                                        menuOptions(scanner);
                                         break;
 
                                     default:
@@ -524,6 +522,13 @@ public class App {
                             System.out.println(VIOLET + "New Budget:"+ RESET);
                             System.out.println(VIOLET + "Enter the period (DAILY, WEEKLY, MONTHLY, YEARLY): "+ RESET);
                             String period = scanner.nextLine().toUpperCase();
+                            try {
+                                BudgetPeriod.valueOf(period);
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(CLEAR_SCREEN);
+                                System.out.println(RED+"Invalid input. Enter a valid period value."+ RESET);
+                                break;
+                            }
                             System.out.println(VIOLET + "Enter budget name:"+ RESET);
                             String name = scanner.nextLine();
                             System.out.println(VIOLET + "Enter budget limit amount:"+ RESET);
@@ -537,20 +542,7 @@ public class App {
                             break;
 
                         case "D":
-                            System.out.println();
-                            System.out.println(VIOLET + "Enter the budget number to delete: "+ RESET);
-                            int budgetNumberToDelete = scanner.nextInt();
-                            scanner.nextLine();
-                            if (budgetMap.containsKey(budgetNumberToDelete)) {
-                                UUID budgetToDelete = budgetMap.get(budgetNumberToDelete);
-                                budgets.removeIf(budget -> budget.getID().equals(budgetToDelete));
-                                BudgetManager.deleteBudgetFromFile(budgetToDelete);
-                                System.out.println(CLEAR_SCREEN);
-                                System.out.println(GREEN+"Budget deleted successfully!"+ RESET);
-                            } else {
-                                System.out.println(CLEAR_SCREEN);
-                                System.out.println(RED+"Invalid budget number. Please try again."+ RESET);
-                            }
+                            Budget.deleteBudget(scanner, budgetMap, budgets);
                             break;
 
                         case "Y":
@@ -574,14 +566,7 @@ public class App {
                 // CATEGORY CASE
                 case "C":
                     System.out.print(CLEAR_SCREEN);
-                    System.out.println(VIOLET + "Categories:"+ RESET);
-                    System.out.printf("%-25s %-12s\n","Name", "Type");
-                    System.out.println("-".repeat(125));
-                    for (Category category : categories) {
-                        System.out.printf("%-25s %-12s\n",
-                            category.getName(), category.getType());
-                    }
-
+                    Category.displayCategories(categories);
                     System.out.println();
                     System.out.println(VIOLET + "Choose your option: \n 'S' - SORT \n 'N' - NEW CATEGORY \n 'D' - DELETE CATEGORY"+ RESET);
                     System.out.println(VIOLET + "--------------------------"+ RESET);
@@ -593,6 +578,13 @@ public class App {
                             System.out.println(VIOLET + "New Category:"+ RESET);
                             System.out.println(VIOLET + "Enter the category type (INCOME, EXPENSE): "+ RESET);
                             String categorytype = scanner.nextLine().toUpperCase();
+                            try {
+                                CategoryType.valueOf(categorytype);
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(CLEAR_SCREEN);
+                                System.out.println(RED+"Invalid input. Enter a valid type value."+ RESET);
+                                break;
+                            }
                             System.out.println(VIOLET + "Enter category name:"+ RESET);
                             String categoryname = scanner.nextLine();
                             Category newCategory = new Category(categoryname, CategoryType.valueOf(categorytype));
@@ -606,7 +598,10 @@ public class App {
                             System.out.println();
                             System.out.println(VIOLET + "Enter the category name to delete: "+ RESET);
                             String categoryNameToDelete = scanner.nextLine();
-                            if (!categories.isEmpty()) {
+
+                            boolean categoryExists = categories.stream().anyMatch(category -> category.getName().equalsIgnoreCase(categoryNameToDelete));
+
+                            if (categoryExists) {
                                 categories.removeIf(category -> category.getName().equals(categoryNameToDelete));
                                 CategoryManager.deleteCategoryFromFile(categoryNameToDelete);
                                 System.out.println(CLEAR_SCREEN);
@@ -636,6 +631,13 @@ public class App {
                     } 
                     break;
 
+                case "S":
+                    System.out.println(CLEAR_SCREEN);
+                    Statistics stats = new Statistics(transactions, budgets);
+                    stats.viewStatistics();
+                    menuOptions(scanner);
+                    break;
+
                 case "X":
                     System.out.print(CLEAR_SCREEN);
                     System.out.println();
@@ -652,12 +654,13 @@ public class App {
             }
         }
     }
-    public static void handleSortingAndFiltering(Scanner scanner) {
+
+    public static void menuOptions(Scanner scanner) {
         System.out.println();
         System.out.println(VIOLET + "Choose your option: \n 'Y' - RETURN TO MAIN \n 'X' - EXIT"+ RESET);
-        String inpouting = scanner.nextLine().toUpperCase();
+        String input = scanner.nextLine().toUpperCase();
     
-        switch (inpouting) {
+        switch (input) {
             case "Y":
                 System.out.print(CLEAR_SCREEN);
                 System.out.println(VIOLET + "Returning to main menu..." + RESET);
@@ -676,5 +679,34 @@ public class App {
                 break;
         }
     }
-}
 
+    public static void deleteTransactionOption(Scanner scanner, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
+        System.out.println(VIOLET + "Would you like to delete a transaction? [ YES ] [ NO ]" + RESET);
+        String input = scanner.nextLine();
+
+        if (input.equalsIgnoreCase("yes")) {
+            Transaction.deleteTransaction(scanner, transactionMap, transactions);
+        }
+        menuOptions(scanner);
+    }
+
+    public static void deleteBudgetOption(Scanner scanner, HashMap<Integer, UUID> budgetMap, List<Budget> budgets) {
+        System.out.println(VIOLET + "Would you like to delete a budget? [ YES ] [ NO ]" + RESET);
+        String input = scanner.nextLine();
+
+        if (input.equalsIgnoreCase("yes")) {
+            Budget.deleteBudget(scanner, budgetMap, budgets);
+        }
+        menuOptions(scanner);
+    }
+
+    public static void deleteCategoryOption(Scanner scanner, List<Category> categories) {
+        System.out.println(VIOLET + "Would you like to delete a category? [ YES ] [ NO ]" + RESET);
+        String input = scanner.nextLine();
+
+        if (input.equalsIgnoreCase("yes")) {
+            Category.deleteCategory(scanner, categories);
+        }
+        menuOptions(scanner);
+    }
+}

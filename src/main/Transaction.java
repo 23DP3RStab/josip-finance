@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -81,10 +82,16 @@ public class Transaction {
         }
     }
     
-    public static void deleteTransactions(Scanner scanner, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
+    public static void deleteTransaction(Scanner scanner, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
         System.out.println();
         System.out.println(App.VIOLET + "Enter the transaction number to delete: " + App.RESET);
-        int transactionNumberToDelete = scanner.nextInt();
+        int transactionNumberToDelete = 0;
+        try {
+            transactionNumberToDelete = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println(App.CLEAR_SCREEN);
+            System.out.println(App.RED + "Invalid transaction number. Please try again." + App.RESET);
+        }
         scanner.nextLine();
         if (transactionMap.containsKey(transactionNumberToDelete)) {
             UUID transactionToDelete = transactionMap.get(transactionNumberToDelete);
@@ -94,6 +101,7 @@ public class Transaction {
                 System.out.println(App.CLEAR_SCREEN);
                 System.out.println(App.GREEN + "Transaction deleted successfully!" + App.RESET);
             } catch (Exception e) {
+                System.out.println(App.CLEAR_SCREEN);
                 System.out.println(App.RED + "An error occurred while deleting the transaction: " + e.getMessage() + App.RESET);
             }
         } else {

@@ -6,7 +6,7 @@ Josip Finance is a software to review your transactions as well as view statisti
 
 - [x] class for reading data (helper)
 - [x] class for transactions
-- [ ] class for statistics ?
+- [x] class for statistics
 - [x] class for budget
 - [x] class for category
 - [x] sorting methods
