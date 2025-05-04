@@ -339,7 +339,8 @@ public class App {
                                 break;
                             }
                             System.out.println(VIOLET + "Enter transaction category:"+ RESET);
-                            String category = scanner.nextLine();
+                            input = scanner.nextLine();
+                            String category = capitalizeFirstLetter(input);
                             if (type.isEmpty() || narrative.isEmpty() || bankReference.isEmpty() || bankReference.isEmpty() || category.isEmpty()) {
                                 System.out.println(CLEAR_SCREEN);
                                 System.out.println(RED+"Invalid input. Make sure to input everything correctly."+ RESET);
@@ -528,7 +529,8 @@ public class App {
                                 break;
                             }
                             System.out.println(VIOLET + "Enter budget name:"+ RESET);
-                            String name = scanner.nextLine();
+                            input = scanner.nextLine();
+                            String name = capitalizeFirstLetter(input);
                             System.out.println(VIOLET + "Enter budget limit amount:"+ RESET);
                             double limitAmount = scanner.nextDouble();
                             scanner.nextLine();
@@ -612,6 +614,7 @@ public class App {
     }
 
     public static void deleteTransactionOption(Scanner scanner, HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {
+        System.out.println();
         System.out.println(VIOLET + "Would you like to delete a transaction? [ YES ] [ NO ]" + RESET);
         String input = scanner.nextLine();
 
@@ -622,6 +625,7 @@ public class App {
     }
 
     public static void deleteBudgetOption(Scanner scanner, HashMap<Integer, UUID> budgetMap, List<Budget> budgets) {
+        System.out.println();
         System.out.println(VIOLET + "Would you like to delete a budget? [ YES ] [ NO ]" + RESET);
         String input = scanner.nextLine();
 
@@ -629,5 +633,13 @@ public class App {
             Budget.deleteBudget(scanner, budgetMap, budgets);
         }
         menuOptions(scanner);
+    }
+
+    public static String capitalizeFirstLetter(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+        input = input.toLowerCase();
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 }
