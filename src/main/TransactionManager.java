@@ -17,6 +17,7 @@ public class TransactionManager {
         reader.readLine();
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
+            boolean needToUpdate = false;
 
             UUID id;
             if (parts[0].isEmpty()) {
@@ -28,6 +29,7 @@ public class TransactionManager {
                     System.out.println("[ERROR] Wrong UUID format.");
                     System.out.println("[INFO] Generating new UUID.");
                     id = UUID.randomUUID();
+                    needToUpdate = true;
                 }
             }
 
@@ -53,7 +55,7 @@ public class TransactionManager {
             Transaction transaction = new Transaction(id, date, type, narrative, bankReference, amount, category);
             transactionList.add(transaction);
 
-            if (parts[0].isEmpty() || parts[2].isEmpty()) {
+            if (needToUpdate) {
                 updateTransactionInFile(transaction);
             }
         }
