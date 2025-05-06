@@ -1,4 +1,5 @@
 package main;
+
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -7,7 +8,6 @@ import main.Budget.BudgetPeriod;
 import main.Transaction.TransactionType;
 import java.util.UUID;
 import java.util.List;
-
 
 // VSCode: F1 -> Java: Clean Workspace
 
@@ -32,12 +32,13 @@ public class App {
     public static void main(String[] args) throws Exception {
         final Scanner scanner = new Scanner(System.in);
         
-        List<Transaction> transactions = TransactionManager.getTransactionList();
-        List<Budget> budgets = BudgetManager.getBudgetList();
         HashMap<Integer, UUID> transactionMap = new HashMap<>();
         HashMap<Integer, UUID> budgetMap = new HashMap<>();
         
         while (true) {
+            List<Transaction> transactions = TransactionManager.getTransactionList();
+            List<Budget> budgets = BudgetManager.getBudgetList();
+
             System.out.println();
             System.out.println(BANNER);
             System.out.println(BANNER_LINES);
@@ -193,6 +194,10 @@ public class App {
                                             System.out.println(RED+"Invalid input. Please try again."+ RESET);
                                     }
                                     break;
+                                
+                                default:
+                                    System.out.print(CLEAR_SCREEN);
+                                    System.out.println(RED+"Invalid input. Please try again."+ RESET);
                             }
                             break;
 
@@ -205,11 +210,11 @@ public class App {
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Enter date to filter (YYYY-MM-DD):"+ RESET);
                                     LocalDate filterDate = LocalDate.parse(scanner.nextLine());
-                                    List<Transaction> filteREDByDate = Transaction.filterTransactions(transactions, transaction -> transaction.getDate().equals(filterDate));
+                                    List<Transaction> filteredByDate = Transaction.filterTransactions(transactions, transaction -> transaction.getDate().equals(filterDate));
                                     System.out.println(CLEAR_SCREEN);
-                                    System.out.println(VIOLET + "Filtering by date - [ " + filterDate.toString() + " ]"+ RESET);
-                                    Transaction.displayTransactions(transactionMap, filteREDByDate);
-                                    deleteTransactionOption(scanner, transactionMap, filteREDByDate);
+                                    System.out.println(VIOLET + "Filtering by date - [ " + filterDate.toString() + " ]" + RESET);
+                                    Transaction.displayTransactions(transactionMap, filteredByDate);
+                                    deleteTransactionOption(scanner, transactionMap, filteredByDate);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -217,11 +222,11 @@ public class App {
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Enter type to filter (INCOMING, OUTGOING, PURCHASE):"+ RESET);
                                     TransactionType filterType = TransactionType.valueOf(scanner.nextLine().toUpperCase());
-                                    List<Transaction> filteREDByType = Transaction.filterTransactions(transactions, transaction -> transaction.getType() == filterType);
+                                    List<Transaction> filteredByType = Transaction.filterTransactions(transactions, transaction -> transaction.getType() == filterType);
                                     System.out.println(CLEAR_SCREEN);
-                                    System.out.println(VIOLET + "Filtering by type - [ " + filterType.toString() + " ]"+ RESET);
-                                    Transaction.displayTransactions(transactionMap, filteREDByType);
-                                    deleteTransactionOption(scanner, transactionMap, filteREDByType);
+                                    System.out.println(VIOLET + "Filtering by type - [ " + filterType.toString() + " ]" + RESET);
+                                    Transaction.displayTransactions(transactionMap, filteredByType);
+                                    deleteTransactionOption(scanner, transactionMap, filteredByType);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -229,11 +234,11 @@ public class App {
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Enter narrative to filter:"+RESET);
                                     String filterNarrative = scanner.nextLine().toLowerCase();
-                                    List<Transaction> filteREDByNarrative = Transaction.filterTransactions(transactions, transaction -> transaction.getNarrative().toLowerCase().contains(filterNarrative));
+                                    List<Transaction> filteredByNarrative = Transaction.filterTransactions(transactions, transaction -> transaction.getNarrative().toLowerCase().contains(filterNarrative));
                                     System.out.println(CLEAR_SCREEN);
-                                    System.out.println(VIOLET + "Filtering by narrative - [ " + filterNarrative + " ]"+RESET);
-                                    Transaction.displayTransactions(transactionMap, filteREDByNarrative);
-                                    deleteTransactionOption(scanner, transactionMap, filteREDByNarrative);
+                                    System.out.println(VIOLET + "Filtering by narrative - [ " + filterNarrative + " ]" + RESET);
+                                    Transaction.displayTransactions(transactionMap, filteredByNarrative);
+                                    deleteTransactionOption(scanner, transactionMap, filteredByNarrative);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -241,32 +246,32 @@ public class App {
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Enter bank reference to filter:"+RESET);
                                     String filterBankReference = scanner.nextLine().toLowerCase();
-                                    List<Transaction> filteREDByBankReference = Transaction.filterTransactions(transactions, transaction -> transaction.getBankReference().toLowerCase().contains(filterBankReference));
+                                    List<Transaction> filteredByBankReference = Transaction.filterTransactions(transactions, transaction -> transaction.getBankReference().toLowerCase().contains(filterBankReference));
                                     System.out.println(CLEAR_SCREEN);
-                                    System.out.println(VIOLET + "Filtering by bank reference - [ " + filterBankReference + " ]"+RESET);
-                                    Transaction.displayTransactions(transactionMap, filteREDByBankReference);
-                                    deleteTransactionOption(scanner, transactionMap, filteREDByBankReference);
+                                    System.out.println(VIOLET + "Filtering by bank reference - [ " + filterBankReference + " ]" + RESET);
+                                    Transaction.displayTransactions(transactionMap, filteredByBankReference);
+                                    deleteTransactionOption(scanner, transactionMap, filteredByBankReference);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
                                 case "A":
                                     System.out.print(CLEAR_SCREEN);
-                                    System.out.println(VIOLET + "Enter amount to filter:"+RESET);
+                                    System.out.println(VIOLET + "Enter amount to filter:" + RESET);
                                     String sFilterAmount = scanner.nextLine();
                                     double filterAmount = 0.0;
                                     try {
                                         filterAmount = Double.parseDouble(sFilterAmount);
                                     } catch (NumberFormatException e) {
                                         System.out.println(CLEAR_SCREEN);
-                                        System.out.println(RED+"Invalid input. Please enter a valid amount."+ RESET);
+                                        System.out.println(RED + "Invalid input. Please enter a valid amount." + RESET);
                                         break;
                                     }
                                     final double finalFilterAmount = filterAmount;
-                                    List<Transaction> filteREDByAmount = Transaction.filterTransactions(transactions, transaction -> transaction.getAmount() == finalFilterAmount);
+                                    List<Transaction> filteredByAmount = Transaction.filterTransactions(transactions, transaction -> transaction.getAmount() == finalFilterAmount);
                                     System.out.println(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Filtering by amount - [ " + sFilterAmount + " ]" + RESET);
-                                    Transaction.displayTransactions(transactionMap, filteREDByAmount);
-                                    deleteTransactionOption(scanner, transactionMap, filteREDByAmount);
+                                    Transaction.displayTransactions(transactionMap, filteredByAmount);
+                                    deleteTransactionOption(scanner, transactionMap, filteredByAmount);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -274,11 +279,11 @@ public class App {
                                     System.out.print(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Enter category to filter:"+RESET);
                                     String filterCategory = scanner.nextLine();
-                                    List<Transaction> filteREDByCategory = Transaction.filterTransactions(transactions, transaction -> transaction.getCategory().equalsIgnoreCase(filterCategory));
+                                    List<Transaction> filteredByCategory = Transaction.filterTransactions(transactions, transaction -> transaction.getCategory().equalsIgnoreCase(filterCategory));
                                     System.out.println(CLEAR_SCREEN);
-                                    System.out.println(VIOLET + "Filtering by category - [ " + filterCategory + " ]"+RESET);
-                                    Transaction.displayTransactions(transactionMap, filteREDByCategory);
-                                    deleteTransactionOption(scanner, transactionMap, filteREDByCategory);
+                                    System.out.println(VIOLET + "Filtering by category - [ " + filterCategory + " ]" + RESET);
+                                    Transaction.displayTransactions(transactionMap, filteredByCategory);
+                                    deleteTransactionOption(scanner, transactionMap, filteredByCategory);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -291,30 +296,30 @@ public class App {
                         case "N":
                             System.out.print(CLEAR_SCREEN);
                             System.out.println(VIOLET + "New Transaction:"+ RESET);
-                            System.out.println(VIOLET + "Enter the transaction type (INCOMING, OUTGOING, PURCHASE): "+ RESET);
+                            System.out.println(VIOLET + "Enter the transaction type (INCOMING, OUTGOING, PURCHASE): " + RESET);
                             String type = scanner.nextLine().toUpperCase();
                             try {
                                 TransactionType.valueOf(type);
                             } catch (IllegalArgumentException e) {
                                 System.out.println(CLEAR_SCREEN);
-                                System.out.println(RED+"Invalid input. Enter a valid type value."+ RESET);
+                                System.out.println(RED + "Invalid input. Enter a valid type value." + RESET);
                                 break;
                             }
-                            System.out.println(VIOLET + "Enter transaction narrative:"+ RESET);
+                            System.out.println(VIOLET + "Enter transaction narrative:" + RESET);
                             String narrative = scanner.nextLine();
-                            System.out.println(VIOLET + "Enter bank reference:"+ RESET);
+                            System.out.println(VIOLET + "Enter bank reference:" + RESET);
                             String bankReference = scanner.nextLine();
-                            System.out.println(VIOLET + "Enter transaction amount:"+ RESET);
+                            System.out.println(VIOLET + "Enter transaction amount:" + RESET);
                             String sAmount = scanner.nextLine();
                             double amount = 0.0;
                             try {
                                 amount = Double.parseDouble(sAmount);
                             } catch (NumberFormatException e) {
                                 System.out.println(CLEAR_SCREEN);
-                                System.out.println(RED+"Invalid input. Please enter a valid amount."+ RESET);
+                                System.out.println(RED + "Invalid input. Please enter a valid amount." + RESET);
                                 break;
                             }
-                            System.out.println(VIOLET + "Enter transaction category:"+ RESET);
+                            System.out.println(VIOLET + "Enter transaction category:" + RESET);
                             input = scanner.nextLine();
                             String category = capitalizeFirstLetter(input);
                             if (type.isEmpty() || narrative.isEmpty() || bankReference.isEmpty() || bankReference.isEmpty() || category.isEmpty()) {
@@ -473,8 +478,80 @@ public class App {
                                         System.out.println(RED+"Invalid input. Please try again."+ RESET);
                                 }
                                 break;
+                            
+                            default:
+                                System.out.print(CLEAR_SCREEN);
+                                System.out.println(RED+"Invalid input. Please try again."+ RESET);
                         }
                         break;
+
+                        // case "F":
+                        //     System.out.print(CLEAR_SCREEN);
+                        //     System.out.println(VIOLET + "Filter by: \n 'P' - PERIOD \n 'N' - NAME \n 'L' - LIMIT AMOUNT \n 'S' - START DATE"+ RESET);
+                        //     input = scanner.nextLine().toUpperCase();
+                        //     switch(input) {
+                        //         case "P":
+                        //             System.out.print(CLEAR_SCREEN);
+                        //             System.out.println(VIOLET + "Enter period to filter (DAILY, WEEKLY, MONTHLY, YEARLY):"+ RESET);
+                        //             TransactionType filterType = TransactionType.valueOf(scanner.nextLine().toUpperCase());
+                        //             List<Transaction> filteredByType = Transaction.filterTransactions(transactions, transaction -> transaction.getType() == filterType);
+                        //             System.out.println(CLEAR_SCREEN);
+                        //             System.out.println(VIOLET + "Filtering by type - [ " + filterType.toString() + " ]" + RESET);
+                        //             Transaction.displayTransactions(transactionMap, filteredByType);
+                        //             deleteTransactionOption(scanner, transactionMap, filteredByType);
+                        //             System.out.println(CLEAR_SCREEN);
+                        //             break;
+
+                        //         case "N":
+                        //             System.out.print(CLEAR_SCREEN);
+                        //             System.out.println(VIOLET + "Enter narrative to filter:"+RESET);
+                        //             String filterNarrative = scanner.nextLine().toLowerCase();
+                        //             List<Transaction> filteredByNarrative = Transaction.filterTransactions(transactions, transaction -> transaction.getNarrative().toLowerCase().contains(filterNarrative));
+                        //             System.out.println(CLEAR_SCREEN);
+                        //             System.out.println(VIOLET + "Filtering by narrative - [ " + filterNarrative + " ]" + RESET);
+                        //             Transaction.displayTransactions(transactionMap, filteredByNarrative);
+                        //             deleteTransactionOption(scanner, transactionMap, filteredByNarrative);
+                        //             System.out.println(CLEAR_SCREEN);
+                        //             break;
+
+                        //         case "L":
+                        //             System.out.print(CLEAR_SCREEN);
+                        //             System.out.println(VIOLET + "Enter amount to filter:" + RESET);
+                        //             String sFilterAmount = scanner.nextLine();
+                        //             double filterAmount = 0.0;
+                        //             try {
+                        //                 filterAmount = Double.parseDouble(sFilterAmount);
+                        //             } catch (NumberFormatException e) {
+                        //                 System.out.println(CLEAR_SCREEN);
+                        //                 System.out.println(RED + "Invalid input. Please enter a valid amount." + RESET);
+                        //                 break;
+                        //             }
+                        //             final double finalFilterAmount = filterAmount;
+                        //             List<Transaction> filteredByAmount = Transaction.filterTransactions(transactions, transaction -> transaction.getAmount() == finalFilterAmount);
+                        //             System.out.println(CLEAR_SCREEN);
+                        //             System.out.println(VIOLET + "Filtering by amount - [ " + sFilterAmount + " ]" + RESET);
+                        //             Transaction.displayTransactions(transactionMap, filteredByAmount);
+                        //             deleteTransactionOption(scanner, transactionMap, filteredByAmount);
+                        //             System.out.println(CLEAR_SCREEN);
+                        //             break;
+
+                        //         case "S":
+                        //             System.out.print(CLEAR_SCREEN);
+                        //             System.out.println(VIOLET + "Enter date to filter (YYYY-MM-DD):"+ RESET);
+                        //             LocalDate filterDate = LocalDate.parse(scanner.nextLine());
+                        //             List<Transaction> filteredByDate = Transaction.filterTransactions(transactions, transaction -> transaction.getDate().equals(filterDate));
+                        //             System.out.println(CLEAR_SCREEN);
+                        //             System.out.println(VIOLET + "Filtering by date - [ " + filterDate.toString() + " ]" + RESET);
+                        //             Transaction.displayTransactions(transactionMap, filteredByDate);
+                        //             deleteTransactionOption(scanner, transactionMap, filteredByDate);
+                        //             System.out.println(CLEAR_SCREEN);
+                        //             break;
+                            
+                        //         default:
+                        //             System.out.print(CLEAR_SCREEN);
+                        //             System.out.println(RED+"Invalid input. Please try again."+ RESET);
+                        //     }
+                        //     break;
 
                         case "N":
                             System.out.print(CLEAR_SCREEN);
