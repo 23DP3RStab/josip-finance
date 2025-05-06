@@ -580,6 +580,7 @@ public class App {
 
         if (input.equalsIgnoreCase("yes")) {
             Transaction.deleteTransaction(scanner, transactionMap, transactions);
+            Transaction.displayTransactions(transactionMap, transactions);
         }
         menuOptions(scanner);
     }
@@ -591,6 +592,7 @@ public class App {
 
         if (input.equalsIgnoreCase("yes")) {
             Budget.deleteBudget(scanner, budgetMap, budgets);
+            Budget.displayBudgets(budgetMap, budgets);
         }
         menuOptions(scanner);
     }
