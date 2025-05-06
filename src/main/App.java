@@ -77,9 +77,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by date from newest to oldest..." + RESET);
                                             List<Transaction> sortedByDateReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getDate).reversed());
                                             Transaction.displayTransactions(transactionMap, sortedByDateReversed);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByDateReversed);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByDateReversed);
                                             break;
 
                                         default:
@@ -98,9 +96,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by type from A-Z..." + RESET);
                                             List<Transaction> sortedByType = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getType));
                                             Transaction.displayTransactions(transactionMap, sortedByType);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByType);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByType);
                                             break;
 
                                         case "D":
@@ -108,9 +104,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by type from Z-A..." + RESET);
                                             List<Transaction> sortedByTypeReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getType).reversed());
                                             Transaction.displayTransactions(transactionMap, sortedByTypeReversed);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByTypeReversed);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByTypeReversed);
                                             break;
 
                                         default:
@@ -129,9 +123,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by narrative from A-Z..." + RESET);
                                             List<Transaction> sortedByNarrative = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getNarrative));
                                             Transaction.displayTransactions(transactionMap, sortedByNarrative);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByNarrative);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByNarrative);
                                             break;
                                             
                                         case "D":
@@ -139,9 +131,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by narrative from Z-A..." + RESET);
                                             List<Transaction> sortedByNarrativeReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getNarrative).reversed());
                                             Transaction.displayTransactions(transactionMap, sortedByNarrativeReversed);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByNarrativeReversed);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByNarrativeReversed);
                                             break;
                                             
                                         default:
@@ -160,9 +150,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by amount from lowest to highest..." + RESET);
                                             List<Transaction> sortedByAmount = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getAmount));
                                             Transaction.displayTransactions(transactionMap, sortedByAmount);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByAmount);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner,transactionMap, sortedByAmount);
                                             break;
 
                                         case "D":
@@ -170,9 +158,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by amount from highest to lowest..." + RESET);
                                             List<Transaction> sortedByAmountReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getAmount).reversed());
                                             Transaction.displayTransactions(transactionMap, sortedByAmountReversed);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByAmountReversed);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByAmountReversed);
                                             break;
 
                                         default:
@@ -191,9 +177,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by category from A-Z..."+ RESET);
                                             List<Transaction> sortedByCategory = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getCategory));
                                             Transaction.displayTransactions(transactionMap, sortedByCategory);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByCategory);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByCategory);
                                             break;
 
                                         case "D":
@@ -201,9 +185,7 @@ public class App {
                                             System.out.println(VIOLET + "Sorting by category from Z-A..."+ RESET);
                                             List<Transaction> sortedByCategoryReversed = Transaction.sortTransactions(transactions, Comparator.comparing(Transaction::getCategory).reversed());
                                             Transaction.displayTransactions(transactionMap, sortedByCategoryReversed);
-                                            // input = scanner.nextLine();
-                                            // deleteTransactions(scanner, CLEAR_SCREEN, transactionMap, sortedByCategoryReversed);
-                                            menuOptions(scanner);
+                                            deleteTransactionOption(scanner, transactionMap, sortedByCategoryReversed);
                                             break;
 
                                         default:
@@ -227,8 +209,7 @@ public class App {
                                     System.out.println(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Filtering by date - [ " + filterDate.toString() + " ]"+ RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByDate);
-                                    // input = scanner.nextLine();
-                                    menuOptions(scanner);
+                                    deleteTransactionOption(scanner, transactionMap, filteREDByDate);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -240,8 +221,7 @@ public class App {
                                     System.out.println(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Filtering by type - [ " + filterType.toString() + " ]"+ RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByType);
-                                    // input = scanner.nextLine();
-                                    menuOptions(scanner);
+                                    deleteTransactionOption(scanner, transactionMap, filteREDByType);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -253,8 +233,7 @@ public class App {
                                     System.out.println(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Filtering by narrative - [ " + filterNarrative + " ]"+RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByNarrative);
-                                    // input = scanner.nextLine();
-                                    menuOptions(scanner);
+                                    deleteTransactionOption(scanner, transactionMap, filteREDByNarrative);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -266,8 +245,7 @@ public class App {
                                     System.out.println(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Filtering by bank reference - [ " + filterBankReference + " ]"+RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByBankReference);
-                                    // input = scanner.nextLine();
-                                    menuOptions(scanner);
+                                    deleteTransactionOption(scanner, transactionMap, filteREDByBankReference);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -288,8 +266,7 @@ public class App {
                                     System.out.println(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Filtering by amount - [ " + sFilterAmount + " ]" + RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByAmount);
-                                    // input = scanner.nextLine();
-                                    menuOptions(scanner);
+                                    deleteTransactionOption(scanner, transactionMap, filteREDByAmount);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -301,8 +278,7 @@ public class App {
                                     System.out.println(CLEAR_SCREEN);
                                     System.out.println(VIOLET + "Filtering by category - [ " + filterCategory + " ]"+RESET);
                                     Transaction.displayTransactions(transactionMap, filteREDByCategory);
-                                    // input = scanner.nextLine();
-                                    menuOptions(scanner);
+                                    deleteTransactionOption(scanner, transactionMap, filteREDByCategory);
                                     System.out.println(CLEAR_SCREEN);
                                     break;
 
@@ -400,9 +376,7 @@ public class App {
                                         System.out.println(VIOLET + "Sorting by period from shortest to longest..."+ RESET);
                                         List<Budget> sortedByPeriod = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getPeriod));
                                         Budget.displayBudgets(budgetMap, sortedByPeriod);
-                                        // input = scanner.nextLine();
-                                        // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByPeriod);
-                                        menuOptions(scanner);
+                                        deleteBudgetOption(scanner,budgetMap, sortedByPeriod);
                                         break;
 
                                     case "D":
@@ -410,9 +384,7 @@ public class App {
                                         System.out.println(VIOLET + "Sorting by period from longest to shortest..."+ RESET);
                                         List<Budget> sortedByPeriodReversed = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getPeriod).reversed());
                                         Budget.displayBudgets(budgetMap, sortedByPeriodReversed);
-                                        // input = scanner.nextLine();
-                                        // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByPeriodReversed);
-                                        menuOptions(scanner);
+                                        deleteBudgetOption(scanner, budgetMap, sortedByPeriodReversed);
                                         break;
 
                                     default:
@@ -431,9 +403,7 @@ public class App {
                                         System.out.println(VIOLET + "Sorting by name from A-Z..."+ RESET);
                                         List<Budget> sortedByName = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getName));
                                         Budget.displayBudgets(budgetMap, sortedByName);
-                                        // input = scanner.nextLine();
-                                        // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByName);
-                                        menuOptions(scanner);
+                                        deleteBudgetOption(scanner, budgetMap, sortedByName);
                                         break;
 
                                     case "D":
@@ -441,9 +411,7 @@ public class App {
                                         System.out.println(VIOLET + "Sorting by name from Z-A..."+ RESET);
                                         List<Budget> sortedByNameReversed = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getName).reversed());
                                         Budget.displayBudgets(budgetMap, sortedByNameReversed);
-                                        // input = scanner.nextLine();
-                                        // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByNameReversed);
-                                        menuOptions(scanner);
+                                        deleteBudgetOption(scanner, budgetMap, sortedByNameReversed);
                                         break;
 
                                     default:
@@ -462,9 +430,7 @@ public class App {
                                         System.out.println(VIOLET + "Sorting by limit amount from lowest to highest..."+ RESET);
                                         List<Budget> sortedByLimitAmount = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getLimitAmount));
                                         Budget.displayBudgets(budgetMap, sortedByLimitAmount);
-                                        // input = scanner.nextLine();
-                                        // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByLimitAmount);
-                                        menuOptions(scanner);
+                                        deleteBudgetOption(scanner, budgetMap, sortedByLimitAmount);
                                         break;
                                         
                                     case "D":
@@ -472,9 +438,7 @@ public class App {
                                         System.out.println(VIOLET + "Sorting by limit amount from highest to lowest..."+ RESET);
                                         List<Budget> sortedByLimitAmountReversed = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getLimitAmount).reversed());
                                         Budget.displayBudgets(budgetMap, sortedByLimitAmountReversed);
-                                        // input = scanner.nextLine();
-                                        // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByLimitAmountReversed);
-                                        menuOptions(scanner);
+                                        deleteBudgetOption(scanner, budgetMap, sortedByLimitAmountReversed);
                                         break;
                                         
                                     default:
@@ -493,9 +457,7 @@ public class App {
                                         System.out.println(VIOLET + "Sorting by date from oldest to newest..."+ RESET);
                                         List<Budget> sortedByStartDate = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getStartDate));
                                         Budget.displayBudgets(budgetMap, sortedByStartDate);
-                                        // input = scanner.nextLine();
-                                        // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByStartDate);
-                                        menuOptions(scanner);
+                                        deleteBudgetOption(scanner, budgetMap, sortedByStartDate);
                                         break;
 
                                     case "D":
@@ -503,9 +465,7 @@ public class App {
                                         System.out.println(VIOLET + "Sorting by date from newest to oldest..."+ RESET);
                                         List<Budget> sortedByStartDateReversed = Budget.sortBudgets(budgets, Comparator.comparing(Budget::getStartDate).reversed());
                                         Budget.displayBudgets(budgetMap, sortedByStartDateReversed);
-                                        // input = scanner.nextLine();
-                                        // deleteBudgets(scanner, CLEAR_SCREEN, budgetMap, sortedByStartDateReversed);
-                                        menuOptions(scanner);
+                                        deleteBudgetOption(scanner, budgetMap, sortedByStartDateReversed);
                                         break;
 
                                     default:
