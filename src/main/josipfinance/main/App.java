@@ -1,11 +1,11 @@
-package main;
+package josipfinance.main;
 
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
-import main.Budget.BudgetPeriod;
-import main.Transaction.TransactionType;
+import josipfinance.main.Budget.BudgetPeriod;
+import josipfinance.main.Transaction.TransactionType;
 import java.util.UUID;
 import java.util.List;
 

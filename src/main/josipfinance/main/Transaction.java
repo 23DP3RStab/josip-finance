@@ -1,4 +1,5 @@
-package main;
+package josipfinance.main;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -65,6 +66,30 @@ public class Transaction {
 
     public String getCategory() {
         return this.category;
+    }
+
+    public void setNarrative(String narrative) {
+        this.narrative = narrative;
+    }
+
+    public void setBankReference(String bankReference) {
+        this.bankReference = bankReference;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setType(TransactionType type) {
+        this.type = type;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public static void displayTransactions(HashMap<Integer, UUID> transactionMap, List<Transaction> transactions) {

@@ -1,6 +1,3 @@
 {
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
-    "liveshare.languages.allowGuestCommandControl": true
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
-

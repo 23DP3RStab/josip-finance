@@ -1,4 +1,4 @@
-package main;
+package josipfinance.main;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

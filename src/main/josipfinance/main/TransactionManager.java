@@ -1,4 +1,5 @@
-package main;
+package josipfinance.main;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.nio.file.StandardOpenOption;
