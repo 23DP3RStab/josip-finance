@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class BudgetManager {
 
-    public static ArrayList<Budget> getBudgetList() throws Exception {
+    public static ArrayList<Budget> getBudgetList(String filename) throws Exception {
         BufferedReader reader = Helper.getReader("budgets.csv");
 
         ArrayList<Budget> budgetList = new ArrayList<>();
