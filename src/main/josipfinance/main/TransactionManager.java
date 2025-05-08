@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.UUID;
 
 public class TransactionManager {
@@ -33,8 +34,16 @@ public class TransactionManager {
                     needToUpdate = true;
                 }
             }
+            
+            LocalDate date = LocalDate.now();
+            if (!parts[1].isEmpty()) {
+                try {
+                    date = LocalDate.parse(parts[1]);
+                } catch (DateTimeParseException e) {
+                    date = LocalDate.now();
+                }
+            }
 
-            LocalDate date = parts[1].isEmpty() ? LocalDate.now() : LocalDate.parse(parts[1]);
             double amount = parts[5].isEmpty() ? 0.0 : Double.parseDouble(parts[5]);
 
             Transaction.TransactionType type;
@@ -50,7 +59,7 @@ public class TransactionManager {
             if (type == Transaction.TransactionType.OUTGOING || type == Transaction.TransactionType.PURCHASE) {
                 category = parts[6].isEmpty() ? "Miscellanious" : parts[6];
             } else {
-                category = parts[6].isEmpty() ? "Miscellanious Income" : parts[6];
+                category = parts[6].isEmpty() ? "Miscellanious income" : parts[6];
             }
 
             Transaction transaction = new Transaction(id, date, type, narrative, bankReference, amount, category);
