@@ -82,7 +82,7 @@ public class Budget {
             UUID budgetToDelete = budgetMap.get(budgetNumberToDelete);
             budgets.removeIf(budget -> budget.getID().equals(budgetToDelete));
             try {
-                BudgetManager.deleteBudgetFromFile(budgetToDelete);
+                BudgetManager.deleteBudgetFromFile(budgetToDelete, "budgets.csv");
                 System.out.println(App.CLEAR_SCREEN);
                 System.out.println(App.GREEN + "Budget deleted successfully!" + App.RESET);
             } catch (Exception e) {

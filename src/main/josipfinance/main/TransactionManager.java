@@ -9,8 +9,8 @@ import java.util.UUID;
 
 public class TransactionManager {
 
-    public static ArrayList<Transaction> getTransactionList() throws Exception {
-        BufferedReader reader = Helper.getReader("fake_transactions.csv");
+    public static ArrayList<Transaction> getTransactionList(String filename) throws Exception {
+        BufferedReader reader = Helper.getReader(filename);
 
         ArrayList<Transaction> transactionList = new ArrayList<>();
         String line;
@@ -57,14 +57,14 @@ public class TransactionManager {
             transactionList.add(transaction);
 
             if (needToUpdate) {
-                updateTransactionInFile(transaction);
+                updateTransactionInFile(transaction, filename);
             }
         }
         return transactionList;
     }
 
-    public static void updateTransactionInFile(Transaction transaction) throws Exception {
-        BufferedReader reader = Helper.getReader("fake_transactions.csv");
+    public static void updateTransactionInFile(Transaction transaction, String filename) throws Exception {
+        BufferedReader reader = Helper.getReader(filename);
         ArrayList<String> lines = new ArrayList<>();
         String line;
 
@@ -73,7 +73,7 @@ public class TransactionManager {
         }
         reader.close();
 
-        BufferedWriter writer = Helper.getWriter("fake_transactions.csv", StandardOpenOption.TRUNCATE_EXISTING);
+        BufferedWriter writer = Helper.getWriter(filename, StandardOpenOption.TRUNCATE_EXISTING);
         for (String fileLine : lines) {
             String[] parts = fileLine.split(",");
             if (parts.length > 0 && !parts[0].isEmpty() && parts[0].equals(transaction.getID().toString())) {
@@ -87,14 +87,14 @@ public class TransactionManager {
         writer.close();
     }
 
-    public static void addTransaction(Transaction transaction) throws Exception {
-        BufferedWriter writer = Helper.getWriter("fake_transactions.csv", StandardOpenOption.APPEND);
+    public static void addTransaction(Transaction transaction, String filename) throws Exception {
+        BufferedWriter writer = Helper.getWriter(filename, StandardOpenOption.APPEND);
         writer.write(transaction.toString() + "\n");
         writer.close();
     }
 
-    public static void deleteTransactionFromFile(UUID transactionID) throws Exception {
-        BufferedReader reader = Helper.getReader("fake_transactions.csv");
+    public static void deleteTransactionFromFile(UUID transactionID, String filename) throws Exception {
+        BufferedReader reader = Helper.getReader(filename);
         ArrayList<String> lines = new ArrayList<>();
         String line;
 
@@ -106,7 +106,7 @@ public class TransactionManager {
         }
         reader.readLine();
 
-        BufferedWriter writer = Helper.getWriter("fake_transactions.csv", StandardOpenOption.TRUNCATE_EXISTING);
+        BufferedWriter writer = Helper.getWriter(filename, StandardOpenOption.TRUNCATE_EXISTING);
         for (String fileLine : lines) {
             writer.write(fileLine);
             writer.newLine();

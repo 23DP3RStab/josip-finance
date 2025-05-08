@@ -10,7 +10,7 @@ import java.util.UUID;
 public class BudgetManager {
 
     public static ArrayList<Budget> getBudgetList(String filename) throws Exception {
-        BufferedReader reader = Helper.getReader("budgets.csv");
+        BufferedReader reader = Helper.getReader(filename);
 
         ArrayList<Budget> budgetList = new ArrayList<>();
         String line;
@@ -31,14 +31,14 @@ public class BudgetManager {
         return budgetList;
     }
 
-    public static void addBudget(Budget budget) throws Exception {
-        BufferedWriter writer = Helper.getWriter("budgets.csv", StandardOpenOption.APPEND);
+    public static void addBudget(Budget budget, String filename) throws Exception {
+        BufferedWriter writer = Helper.getWriter(filename, StandardOpenOption.APPEND);
         writer.write(budget.toString() + "\n");
         writer.close();
     }
 
-    public static void deleteBudgetFromFile(UUID budgetID) throws Exception {
-        BufferedReader reader = Helper.getReader("budgets.csv");
+    public static void deleteBudgetFromFile(UUID budgetID, String filename) throws Exception {
+        BufferedReader reader = Helper.getReader(filename);
         ArrayList<String> lines = new ArrayList<>();
         String line;
 
@@ -50,7 +50,7 @@ public class BudgetManager {
         }
         reader.readLine();
 
-        BufferedWriter writer = Helper.getWriter("budgets.csv", StandardOpenOption.TRUNCATE_EXISTING);
+        BufferedWriter writer = Helper.getWriter(filename, StandardOpenOption.TRUNCATE_EXISTING);
         for (String fileLine : lines) {
             writer.write(fileLine);
             writer.newLine();

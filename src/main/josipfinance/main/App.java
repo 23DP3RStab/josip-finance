@@ -36,8 +36,8 @@ public class App {
         HashMap<Integer, UUID> budgetMap = new HashMap<>();
         
         while (true) {
-            List<Transaction> transactions = TransactionManager.getTransactionList();
-            List<Budget> budgets = BudgetManager.getBudgetList();
+            List<Transaction> transactions = TransactionManager.getTransactionList("transactions.csv");
+            List<Budget> budgets = BudgetManager.getBudgetList("budgets.csv");
 
             System.out.println();
             System.out.println(BANNER);
@@ -329,7 +329,7 @@ public class App {
                             }
                             Transaction newTransaction = new Transaction(LocalDate.now(), TransactionType.valueOf(type), narrative, bankReference, amount, category);
                             transactions.add(newTransaction);
-                            TransactionManager.addTransaction(newTransaction);
+                            TransactionManager.addTransaction(newTransaction, "transactions.csv");
                             System.out.print(CLEAR_SCREEN);
                             System.out.println(GREEN+"Transaction added successfully!"+ RESET);
                             break;
@@ -573,7 +573,7 @@ public class App {
                             scanner.nextLine();
                             Budget newBudget = new Budget(BudgetPeriod.valueOf(period), limitAmount, name, LocalDate.now());
                             budgets.add(newBudget);
-                            BudgetManager.addBudget(newBudget);
+                            BudgetManager.addBudget(newBudget, "budgets.csv");
                             System.out.print(CLEAR_SCREEN);
                             System.out.println(GREEN+"Budget added successfully!"+ RESET);
                             break;

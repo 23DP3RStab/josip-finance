@@ -23,7 +23,7 @@ class TransactionManagerTest {
             writer.write(content);
         }
 
-        ArrayList<Transaction> transactions = TransactionManager.getTransactionList();
+        ArrayList<Transaction> transactions = TransactionManager.getTransactionList("test_transactions.csv");
         assertEquals(2, transactions.size());
 
         Transaction first = transactions.get(0);

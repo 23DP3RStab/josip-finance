@@ -122,7 +122,7 @@ public class Transaction {
             UUID transactionToDelete = transactionMap.get(transactionNumberToDelete);
             transactions.removeIf(transaction -> transaction.getID().equals(transactionToDelete));
             try {
-                TransactionManager.deleteTransactionFromFile(transactionToDelete);
+                TransactionManager.deleteTransactionFromFile(transactionToDelete, "transactions.csv");
                 System.out.println(App.CLEAR_SCREEN);
                 System.out.println(App.GREEN + "Transaction deleted successfully!" + App.RESET);
             } catch (Exception e) {
