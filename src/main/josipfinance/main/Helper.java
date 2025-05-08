@@ -2,7 +2,6 @@ package josipfinance.main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,11 +21,13 @@ public class Helper {
         return Files.newBufferedWriter(getFilePath(filename), option);
     }
 
-    private static Path getFilePath(String filename) throws FileNotFoundException {
-        File file = new File(RESOURCES_FOLDER, filename);
-        if (!file.exists()) {
-            throw new FileNotFoundException("File not found: " + file.getAbsolutePath());
+    private static Path getFilePath(String filename) throws IOException {
+        File folder = new File(RESOURCES_FOLDER);
+        if (!folder.exists()) {
+            folder.mkdirs();
         }
+    
+        File file = new File(folder, filename);
         return file.toPath();
     }
 }

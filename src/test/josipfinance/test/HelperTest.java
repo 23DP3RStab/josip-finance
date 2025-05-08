@@ -19,19 +19,16 @@ class HelperTest {
         String filename = "testfile.txt";
         String content = "This is a test line.";
 
-        // Write to file
         try (BufferedWriter writer = Helper.getWriter(filename, StandardOpenOption.CREATE)) {
             writer.write(content);
         }
 
-        // Read from file
         try (BufferedReader reader = Helper.getReader(filename)) {
             String readLine = reader.readLine();
             assertEquals(content, readLine);
         }
 
-        // Cleanup
-        Files.deleteIfExists(Path.of("data", filename));
+        Files.deleteIfExists(Path.of("resources", filename));
     }
 
     @Test
