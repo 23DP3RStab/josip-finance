@@ -79,7 +79,7 @@ All inputs are done via keyboard. Results are printed to the terminal with visua
 1. Go to the releases page
 2. Download either clean version, or with demo data (both versions need to have the data files)
 3. Extract the zip folder
-3. Launch and follow menu options to use
+3. Run the .exe file and follow menu options to use
 
 ---
 
